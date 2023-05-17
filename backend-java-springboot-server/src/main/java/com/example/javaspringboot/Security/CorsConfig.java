@@ -2,12 +2,8 @@ package com.example.javaspringboot.Security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.util.logging.Filter;
-import java.util.logging.LogRecord;
 
 // followed tutorial: https://www.youtube.com/watch?v=Ly79YDERpas
 @Configuration

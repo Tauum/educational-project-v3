@@ -1,22 +1,12 @@
 package com.example.javaspringboot.User.Model;
 
-import com.example.javaspringboot.Additional.Model.Note;
 import com.example.javaspringboot.User.UserUtility;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
 import java.util.UUID;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import lombok.AllArgsConstructor;
@@ -51,6 +41,8 @@ public class Credentials {
 
   @Column(nullable = true)
   public LocalDateTime lastUpdated;
+
+  public Boolean expired = false;
 
   @Version
   public Long version = 0L;

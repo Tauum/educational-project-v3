@@ -1,14 +1,12 @@
 package com.example.javaspringboot.User.Model;
 
-//import com.example.javaspringboot.Additional.Model.ModuleRegisterDto;
-//import com.example.javaspringboot.Additional.Model.ModuleRegisterDtoRole;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor

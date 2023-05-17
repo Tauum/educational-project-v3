@@ -1,5 +1,7 @@
 package com.example.javaspringboot.Security;
 
+import static org.springframework.http.HttpMethod.GET;
+
 import com.example.javaspringboot.Security.Request.AuthEntryPointJwt;
 import com.example.javaspringboot.Security.Request.AuthTokenFilter;
 import com.example.javaspringboot.User.Service.MyUserDetailsService;
@@ -16,9 +18,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
 
 @Configuration
 @EnableWebSecurity
@@ -89,7 +88,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/Test/admin").hasAnyAuthority("ROLE_ADMIN")
 
-                .anyRequest().authenticated();
+                .anyRequest().authenticated().and().logout().permitAll();
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

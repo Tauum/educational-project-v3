@@ -1,33 +1,26 @@
 package com.example.javaspringboot.User.Service;
 
-
-//import com.example.javaspringboot.Additional.Model.Module;
-//import com.example.javaspringboot.Additional.Model.ModuleRegisterDto;
-//import com.example.javaspringboot.Additional.Model.ModuleRegisterDtoRole;
-//import com.example.javaspringboot.Submissions.Model.Statistics;
-//import com.example.javaspringboot.Submissions.Service.SubmittedHangmanService;
-//import com.example.javaspringboot.Submissions.Service.SubmittedQuizService;
-//import com.example.javaspringboot.Submissions.Service.SubmittedShifterService;
-import com.example.javaspringboot.User.Model.*;
-import com.example.javaspringboot.User.Model.UserProfile.UserProfileBuilder;
+import com.example.javaspringboot.User.Model.Credentials;
+import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.User.Model.EnumRole;
+import com.example.javaspringboot.User.Model.PersonalInformation;
+import com.example.javaspringboot.User.Model.Registration;
+import com.example.javaspringboot.User.Model.Role;
+import com.example.javaspringboot.User.Model.User;
+import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Repository.RoleRepository;
 import com.example.javaspringboot.User.Repository.UserRepository;
 import com.example.javaspringboot.User.UserUtility;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
-import javax.persistence.Access;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {

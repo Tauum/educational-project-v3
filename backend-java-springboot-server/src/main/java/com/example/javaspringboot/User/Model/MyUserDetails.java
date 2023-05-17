@@ -1,6 +1,8 @@
 package com.example.javaspringboot.User.Model;
 
-import java.util.UUID;
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,30 +10,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+//https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
+@Data @NoArgsConstructor @AllArgsConstructor
 public class MyUserDetails implements UserDetails {
-
-    private UUID id;
-    private String email;
-    private String password;
-    private boolean active;
-    private List<GrantedAuthority> authorities;
+    private User user;
+    private Set<GrantedAuthority> authorities;
 
     public MyUserDetails(User user) {
-        this.id = user.getId();
-        this.email = user.getCredentials().getCurrentEmail();
-        this.password = user.getCredentials().getPassword();
-        this.active = user.isEnabled();
-
+        this.user = user;
         this.authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -41,31 +30,27 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return user.getCredentials().getPassword();
     }
 
     @Override
-    public String getUsername() {
-        return null;
-    }
+    public String getUsername() { return user.getCredentials().getCurrentEmail(); }
 
-    public String getEmail() { return email; }
+    public String getEmail() { return user.getCredentials().getCurrentEmail(); }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+    public String getEmailOriginal() { return user.getCredentials().getOriginalEmail(); }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+    public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public boolean isCredentialsNonExpired() { return true; }
+    public boolean isAccountNonLocked() { return true ;}
+
+    @Override
+    public boolean isCredentialsNonExpired() { return !user.getCredentials().getExpired(); }
 
     @Override
     public boolean isEnabled() {
-        return active;
+        return user.isEnabled();
     }
 }

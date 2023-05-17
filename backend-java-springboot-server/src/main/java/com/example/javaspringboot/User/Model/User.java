@@ -1,24 +1,34 @@
 package com.example.javaspringboot.User.Model;
 
 import com.example.javaspringboot.Additional.Model.Note;
-import com.example.javaspringboot.User.UserUtility;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Entity //needed for database mapping
 @Table(name = "User") @Builder
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid2")
@@ -61,6 +71,14 @@ public class User {
 
     @Version
     public Long version = 0L;
+
+
+    public User(String email, String password)
+    {
+        this.credentials = new Credentials();
+        this.credentials.setPassword(password);
+        this.credentials.setCurrentEmail(email);
+    }
 
     public User(Credentials credentials,
         PersonalInformation personalInformation,

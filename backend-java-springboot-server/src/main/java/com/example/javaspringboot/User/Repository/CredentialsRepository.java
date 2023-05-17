@@ -1,7 +1,6 @@
 package com.example.javaspringboot.User.Repository;
 
 import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Model.User;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;

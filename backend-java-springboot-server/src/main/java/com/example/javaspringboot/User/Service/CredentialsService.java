@@ -1,13 +1,12 @@
 package com.example.javaspringboot.User.Service;
 
-import com.example.javaspringboot.User.Model.*;
+import com.example.javaspringboot.User.Model.Credentials;
 import com.example.javaspringboot.User.Repository.CredentialsRepository;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CredentialsService {

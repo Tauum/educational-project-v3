@@ -1,14 +1,10 @@
 package com.example.javaspringboot.User.Controller;
 
-import com.example.javaspringboot.User.Model.InitialRegister;
-import com.example.javaspringboot.User.Model.User;
-import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin( originPatterns = "*", maxAge = 3600, allowCredentials = "true")
 

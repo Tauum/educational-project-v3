@@ -1,11 +1,10 @@
 package com.example.javaspringboot.User.Model;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor

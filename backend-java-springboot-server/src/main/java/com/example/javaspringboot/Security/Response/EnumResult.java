@@ -1,4 +1,4 @@
-package com.example.javaspringboot.User.Model;
+package com.example.javaspringboot.Security.Response;
 
 public enum EnumResult {
 

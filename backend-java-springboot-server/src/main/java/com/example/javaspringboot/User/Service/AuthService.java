@@ -3,8 +3,8 @@ package com.example.javaspringboot.User.Service;
 import com.example.javaspringboot.Security.Request.JwtUtils;
 import com.example.javaspringboot.Security.Response.LoginResponse;
 import com.example.javaspringboot.Security.Response.RegisterResponse;
-import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Model.EnumResult;
+import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Security.Request.LoginRequest;
 import com.example.javaspringboot.User.Model.MyUserDetails;
 import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.User;
@@ -40,12 +40,17 @@ public class AuthService {
   @Autowired
   JwtUtils jwtUtils;
 
-  public LoginResponse authenticateUserSignIn(Credentials credentials) {
+  @Autowired
+  CredentialsLoginService credentialsLoginService;
+
+  public LoginResponse authenticateUserSignIn(LoginRequest loginRequest) {
+
+    User user = new User(loginRequest.getEmail(), loginRequest.getPassword());
 
     Authentication authentication =
         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(credentials.getCurrentEmail(),
-                credentials.getPassword()));
+            new UsernamePasswordAuthenticationToken(user.getCredentials().getCurrentEmail(),
+                user.getCredentials().getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
     MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
@@ -59,7 +64,6 @@ public class AuthService {
   public LoginResponse whoAmI(HttpServletRequest request){
 
     String jwt = jwtUtils.getJwtFromCookies(request);
-
     if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
       MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       return filterLogin(userDetails);
@@ -73,43 +77,37 @@ public class AuthService {
 
   public LoginResponse logout() {
     SecurityContextHolder.clearContext();
-   ResponseCookie responseCookie = jwtUtils.getCleanJwtCookie();
-
     return new LoginResponse(
-        Optional.of(responseCookie),
+        jwtUtils.getCleanJwtCookie(),
         null,
         EnumResult.NOT_LOGGED_IN,
-        200
-    );
+        200);
   }
 
   public LoginResponse filterLogin(MyUserDetails userDetails){
     if (userDetails.getEmail() != null || !userDetails.getEmail().isBlank()) {
       UserProfile userProfile = userService.findUserProfileUserByEmail(userDetails.getEmail());
       if (userProfile != null) {
-        if (!userProfile.isEnabled())
+        if (!userProfile.isEnabled()){
+          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.DISABLED);
           return new LoginResponse(
               null,
               null,
               EnumResult.DISABLED,
-              403
-          );
+              403);
+        }
         else {
+          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.ACCEPTED);
           return new LoginResponse(
-              Optional.ofNullable(jwtUtils.generateJwtCookie(userDetails)),
-              Optional.of(userProfile),
+              jwtUtils.generateJwtCookie(userDetails),
+              userProfile,
               EnumResult.ACCEPTED,
-              200
-          );
+              200);
         }
       }
     }
-    return new LoginResponse(
-        null,
-        null,
-        EnumResult.NOT_FOUND,
-        400
-    );
+    credentialsLoginService.createCredentialsLogin( userDetails.getEmail(),EnumResult.NOT_FOUND);
+    return new LoginResponse(null,null,EnumResult.NOT_FOUND,400);
   }
 
   public RegisterResponse filterRegister(EnumResult enumResult){
