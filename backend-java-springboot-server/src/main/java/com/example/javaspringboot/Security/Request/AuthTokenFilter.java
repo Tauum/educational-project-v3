@@ -44,21 +44,20 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
             String jwt = parseJwt(request);
 
-//            if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-//                String email = jwtUtils.getEmailFromJwtToken(jwt);
-//                UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-//                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
-//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-//                SecurityContextHolder.getContext().setAuthentication(authentication);
-//            }
-
             if (jwt != null) {
                 if (jwtUtils.validateJwtToken(jwt)){
                     String email = jwtUtils.getEmailFromJwtToken(jwt);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(email);
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+                    UsernamePasswordAuthenticationToken authentication = new
+                        UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+
+//                    UsernamePasswordAuthenticationToken authentication = new
+//                        UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+//                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//                    SecurityContextHolder.getContext().setAuthentication(authentication);
+
                 }
                 else{// dont know if this is right, but if the token is invalid it will revoke it, give empty token with 1s life
                     ResponseCookie cookie = jwtUtils.getCleanJwtCookie();

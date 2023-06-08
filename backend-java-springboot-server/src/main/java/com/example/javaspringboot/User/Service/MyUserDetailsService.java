@@ -20,11 +20,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
-//        Credentials credentials = credentialsService.findCredentialsByCurrentEmail(email);
-        Credentials credentials = null;
+        Credentials credentials = credentialsService.findCredentialsByCurrentEmail(email);
         if (credentials == null) return null;
         return new MyUserDetails(credentials);
     }
+
 
 }

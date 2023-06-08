@@ -5,17 +5,16 @@ import com.example.javaspringboot.Security.Response.LoginResponse;
 import com.example.javaspringboot.Security.Response.RegisterResponse;
 import com.example.javaspringboot.Security.Response.EnumResult;
 import com.example.javaspringboot.Security.Request.LoginRequest;
+import com.example.javaspringboot.User.Model.Credentials;
 import com.example.javaspringboot.User.Model.MyUserDetails;
 import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Repository.RoleRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -43,7 +42,7 @@ public class AuthService {
   @Autowired
   CredentialsLoginService credentialsLoginService;
 
-  public LoginResponse authenticateUserSignIn(LoginRequest loginRequest) {
+  public LoginResponse  authenticateUserSignIn(LoginRequest loginRequest) {
 
     User user = new User(loginRequest.getEmail(), loginRequest.getPassword());
 
@@ -53,12 +52,12 @@ public class AuthService {
                 user.getCredentials().getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
-    MyUserDetails userDetails = (MyUserDetails) authentication.getPrincipal();
+    MyUserDetails myUserDetails = (MyUserDetails) authentication.getPrincipal();
 
-    List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority()).collect(
-        Collectors.toList());
+    List<String> roles = myUserDetails.getAuthorities()
+        .stream().map(item -> item.getAuthority()).collect(Collectors.toList());
 
-    return filterLogin(userDetails);
+    return filterLogin(myUserDetails);
   }
 
   public LoginResponse whoAmI(HttpServletRequest request){
@@ -84,20 +83,21 @@ public class AuthService {
         200);
   }
 
-  public LoginResponse filterLogin(MyUserDetails userDetails){
-    if (userDetails.getEmail() != null || !userDetails.getEmail().isBlank()) {
-      UserProfile userProfile = userService.findUserProfileUserByCurrentEmail(userDetails.getEmail());
+  public LoginResponse filterLogin(MyUserDetails myUserDetails){
+    if (myUserDetails.getEmail() != null || !myUserDetails.getEmail().isBlank()) {
+      UserProfile userProfile = userService.
+          findUserProfilebyMyUserDetails(myUserDetails.getCredentials().getId());
       if (userProfile != null) {
-        if (!userProfile.isEnabled()){
-          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.DISABLED);
+        if (!userProfile.getCredentials().isEnabled()){
+          credentialsLoginService.createCredentialsLogin(myUserDetails.getEmail(),EnumResult.DISABLED);
           return new LoginResponse(
               null,
               null,
               EnumResult.DISABLED,
               403);
         }
-        else if (userProfile.isCredentialsExpired()){
-          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.CREDENTIALS_EXPIRED);
+        else if (userProfile.getCredentials().isExpired()){
+          credentialsLoginService.createCredentialsLogin(myUserDetails.getEmail(),EnumResult.CREDENTIALS_EXPIRED);
           return new LoginResponse(
               null,
               null,
@@ -105,16 +105,21 @@ public class AuthService {
               403);
         }
         else {
-          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.ACCEPTED);
+          credentialsLoginService.createCredentialsLogin(myUserDetails.getEmail(),EnumResult.ACCEPTED);
           return new LoginResponse(
-              jwtUtils.generateJwtCookie(userDetails),
+              jwtUtils.generateJwtCookie(myUserDetails),
               userProfile,
               EnumResult.ACCEPTED,
               200);
         }
       }
     }
-    credentialsLoginService.createCredentialsLogin( userDetails.getEmail(),EnumResult.NOT_FOUND);
+    credentialsLoginService.createCredentialsLogin( myUserDetails.getEmail(),EnumResult.NOT_FOUND);
+    return new LoginResponse(null,null,EnumResult.UNKNOWN,400);
+  }
+
+  public LoginResponse rejectLogin(LoginRequest loginRequest){
+    credentialsLoginService.createCredentialsLogin(loginRequest.getEmail(),EnumResult.NOT_FOUND);
     return new LoginResponse(null,null,EnumResult.NOT_FOUND,400);
   }
 

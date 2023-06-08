@@ -1,5 +1,6 @@
 package com.example.javaspringboot.User.Service;
 
+import com.example.javaspringboot.Security.Request.LoginRequest;
 import com.example.javaspringboot.User.Model.Credentials;
 import com.example.javaspringboot.User.Repository.CredentialsRepository;
 import java.util.List;
@@ -30,18 +31,12 @@ public class CredentialsService {
 
   public Credentials findCredentialsByCurrentEmail (String email){
     Optional<Credentials> credentials = credentialsRepo.findByCurrentEmail(email);
-    if (credentials.isPresent()) {
       return credentials.orElse(null);
-    }
-    return null;
   }
 
   public Credentials findCredentialsByOriginalEmail (String email){
     Optional<Credentials> credentials = credentialsRepo.findByOriginalEmail(email);
-    if (credentials.isPresent()) {
       return credentials.orElse(null);
-    }
-    return null;
   }
 
   public List<Credentials> findCredentialsByCurrentEmailContains (String email){
@@ -99,4 +94,4 @@ public class CredentialsService {
     return false;
   }
 
-  }
+}

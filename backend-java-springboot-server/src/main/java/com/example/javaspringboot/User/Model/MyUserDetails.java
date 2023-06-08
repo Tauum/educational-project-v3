@@ -48,7 +48,7 @@ public class MyUserDetails implements UserDetails {
     public boolean isAccountNonLocked() { return true ;}
 
     @Override
-    public boolean isCredentialsNonExpired() { return !credentials.getExpired(); }
+    public boolean isCredentialsNonExpired() { return !credentials.isExpired(); }
 
     @Override
     public boolean isEnabled() {

@@ -1,8 +1,6 @@
 package com.example.javaspringboot.User.Model;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,37 +14,29 @@ import lombok.NoArgsConstructor;
 public class UserProfile {
 
     private UUID id;
-
-    private String credentialsCurrentEmail;
-
+    private Credentials credentials;
     private PersonalInformation personalInformation;
 
-    private boolean termsAndConditions = false;
-
-    private boolean initialRegister = false;
-
     private LocalDateTime createdOn;
-
+    private LocalDateTime last_updated;
     private Long version;
 
-    private boolean credentialsExpired = false;
-    private boolean enabled=true;
+    private boolean termsAndConditions = false;
+    private boolean initialRegister = false;
+
     private boolean hidden=false;
 
-    private Set<Role> roles = new HashSet<>();
-
     public UserProfile buildFromUser(User user){
-
         return UserProfile.builder()
             .id(user.getId())
+            .credentials(user.getCredentials())
             .personalInformation(user.getPersonalInformation())
-            .credentialsCurrentEmail(user.getCredentials().getCurrentEmail())
             .createdOn(user.getCreation())
+            .last_updated(user.getLast_updated())
             .version(user.getVersion())
-            .roles(user.getCredentials().getRoles())
-            .enabled(user.getCredentials().isEnabled())
+            .termsAndConditions(user.isTermsAndConditions())
+            .initialRegister(user.isInitialRegister())
             .hidden(user.isHidden())
-            .credentialsExpired(user.getCredentials().getExpired())
             .build();
     }
 

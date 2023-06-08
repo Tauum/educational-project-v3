@@ -17,13 +17,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Entity //needed for database mapping
-@Table(name = "Credentials")
+@Table(name = "Credentials") @Builder
 public class Credentials implements Serializable {
 
   @Id
@@ -49,7 +50,7 @@ public class Credentials implements Serializable {
   @Column(nullable = true)
   public LocalDateTime lastUpdated;
 
-  public Boolean expired = false;
+  public boolean expired = false;
   private boolean enabled=true;
 
   @Version
@@ -69,9 +70,16 @@ public class Credentials implements Serializable {
     this.enabled = true;
   }
 
-
-
-
+  public Credentials(UUID id, String currentEmail, Set<Role> roles,
+      LocalDateTime lastUpdated, boolean expired, boolean enabled, Long version){
+    this.id = id;
+    this.currentEmail = currentEmail;
+    this.roles = roles;
+    this.lastUpdated = lastUpdated;
+    this.expired = expired;
+    this.enabled = enabled;
+    this.version = version;
+  }
 
   public void setCurrentEmail(String currentEmail) {
     if (this.getOriginalEmail() == null) this.setOriginalEmail(this.getCurrentEmail());
@@ -97,5 +105,4 @@ public class Credentials implements Serializable {
     }
     return null;
   }
-
 }

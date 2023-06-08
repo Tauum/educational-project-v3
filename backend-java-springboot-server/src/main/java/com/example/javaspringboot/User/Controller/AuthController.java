@@ -32,6 +32,12 @@ public class AuthController {
 
         LoginResponse loginResponse = authService.authenticateUserSignIn(loginRequest);
 
+        if (loginResponse.getHttpCode() != 200) {
+            return ResponseEntity.status(loginResponse.getHttpCode())
+                .header(HttpHeaders.WARNING, loginResponse.getEnumResult().toString())
+                .body(loginResponse.getEnumResult().toString());
+        }
+
         return  ResponseEntity.status(loginResponse.getHttpCode())
             .header(HttpHeaders.SET_COOKIE, loginResponse.getResponseCookie().toString())
             .header(HttpHeaders.WARNING,loginResponse.getEnumResult().toString())

@@ -69,6 +69,7 @@ public class JwtUtils {
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
             return true;
         }
+        // todo: change this to the new format of errors
         catch (SignatureException e) { logger.error("Invalid JWT signature: {}", e.getMessage()); }
         catch (MalformedJwtException e) { logger.error("Invalid JWT token: {}", e.getMessage()); }
         catch (ExpiredJwtException e) { logger.error("JWT token is expired: {}", e.getMessage()); }

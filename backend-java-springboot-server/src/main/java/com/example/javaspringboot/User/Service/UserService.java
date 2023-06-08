@@ -1,5 +1,6 @@
 package com.example.javaspringboot.User.Service;
 
+import com.example.javaspringboot.Security.Request.LoginRequest;
 import com.example.javaspringboot.User.Model.Credentials;
 import com.example.javaspringboot.Security.Response.EnumResult;
 import com.example.javaspringboot.User.Model.EnumRole;
@@ -13,6 +14,7 @@ import com.example.javaspringboot.User.UserUtility;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import javax.transaction.Transactional;
@@ -46,23 +48,6 @@ public class UserService {
 //        this.sHService = sHService;
     }
 //
-// FIGURE OUT IF THESE SKEANY THROWS ARE RELEVANT IN MYUSERDETAILSSERVICE
-//    @SneakyThrows
-//    @Override // THIS OVERWRITES THE DEFAULT SPRING SECURITY ONE
-//    public UserDetails loadUserByUsername(String email){
-//        User user = findUserByEmail(email);
-//        if ( user != null){
-//            if (user.isEnabled()){
-//                Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
-//                user.getRoles().forEach(role -> { authorities.add(new SimpleGrantedAuthority(role.getName().toString()));});
-////                sucessfulLogin(user); // this works wether correct or false login request
-//                return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
-//            }
-//            else { throw new AccountLockedException("AccountLockedException"); }
-//        }
-//        else{ throw new EntityNotFoundException("EntityNotFoundException"); }
-//    }
-
 
   public EnumResult addUser(Registration registration) {
 
@@ -98,28 +83,27 @@ public class UserService {
     return EnumResult.ACCEPTED;
   }
 
-  public UserProfile findUserProfileUserByCurrentEmail(String email) {
-//    Optional<User> user = userRepo.findByCredentialsOriginalEmail(email); // will always return null
-    Optional<User> user = findUserByCredentialsCurrentEmail(email);
+//  public Credentials verifyCredentials(LoginRequest loginRequest) {
+//    Credentials credentials = credentialsService.findCredentialsByCurrentEmail(
+//        loginRequest.getEmail());
+//    if (credentials != null &&
+//        credentials.getPassword() != null && credentials.getCurrentEmail() != null &&
+//        // TODO : VERIFY THIS BELOW WHEN I CAN BE FUCKING BOTHERED
+//        Objects.equals(credentials.getPassword(), loginRequest.getPassword()) &&
+//        Objects.equals(credentials.getCurrentEmail(), loginRequest.getEmail())
+//    ){
+//      return credentials;
+//    }
+//    return null;
+//  }
 
-    if (user.isPresent()){
-      UserProfile profile = new UserProfile();
-      profile.buildFromUser(user.get());
-
-//            List<ModuleRegisterDtoRole> modules  = moduleService.findAllModulesRegisterDTOForUser(user);
-//            userProfile.setModules(modules);
-
-      return profile;
-    }
-    return null;
+  public UserProfile findUserProfilebyMyUserDetails(UUID credentialsId) {
+//    Credentials foundCredentials = verifyCredentials()
+    User foundUser = userRepo.findByCredentials_Id(credentialsId);
+    if(foundUser == null) return null;
+    UserProfile userProfile = new UserProfile();
+    return userProfile.buildFromUser(foundUser);
   }
-
-  public Optional<User> findUserByCredentialsCurrentEmail(String email) {
-    Credentials credentials = credentialsService.findCredentialsByCurrentEmail(email);
-    if(credentials == null) return null;
-    return Optional.ofNullable(userRepo.findByCredentials(credentials.getId()));
-  }
-
 
   public List<User> findAll() {
       return userRepo.findAll();
