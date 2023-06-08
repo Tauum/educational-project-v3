@@ -14,7 +14,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,11 +36,11 @@ public class User implements Serializable {
     @Type(type = "uuid-char")
     private UUID id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<Role> roles = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "user_notes",
@@ -49,7 +48,7 @@ public class User implements Serializable {
         inverseJoinColumns = @JoinColumn(name = "note_id"))
     private Set<Note> notes = new HashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Credentials credentials;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -61,7 +60,6 @@ public class User implements Serializable {
     @Column(name = "initial_register")
     private boolean initialRegister = false;
 
-    private boolean enabled=true;
     private boolean hidden=false;
 
     private LocalDateTime creation;
@@ -88,7 +86,6 @@ public class User implements Serializable {
         this.credentials = credentials;
         this.personalInformation = personalInformation;
         this.termsAndConditions = termsAndConditions;
-        this.enabled = true;
         this.creation = creation;
     }
 }

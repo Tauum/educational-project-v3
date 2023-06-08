@@ -8,12 +8,15 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByCredentialsCurrentEmail(String email);
+//    Optional<User> findByCredentialsCurrentEmail(String email);
+
+
+    User findByCredentials(UUID id);
+    Optional<User> findUserByCredentialsCurrentEmail(String email);
 
     Optional<User> findByCredentialsOriginalEmail(String email);
     User findUserById(UUID id);
     void deleteUserById(UUID id);
-    List<User> findAllByRolesContains(Role findRole);
 
 
 }

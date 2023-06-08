@@ -13,12 +13,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 //https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial
 @Data @NoArgsConstructor @AllArgsConstructor
 public class MyUserDetails implements UserDetails {
-    private User user;
+
+    private Credentials credentials;
     private Set<GrantedAuthority> authorities;
 
-    public MyUserDetails(User user) {
-        this.user = user;
-        this.authorities = user.getRoles().stream()
+    public MyUserDetails(Credentials credentials) {
+        this.credentials = credentials;
+        this.authorities = credentials.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toSet());
     }
@@ -30,15 +31,15 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getCredentials().getPassword();
+        return credentials.getPassword();
     }
 
     @Override
-    public String getUsername() { return user.getCredentials().getCurrentEmail(); }
+    public String getUsername() { return credentials.getCurrentEmail(); }
 
-    public String getEmail() { return user.getCredentials().getCurrentEmail(); }
+    public String getEmail() { return credentials.getCurrentEmail(); }
 
-    public String getEmailOriginal() { return user.getCredentials().getOriginalEmail(); }
+    public String getEmailOriginal() { return credentials.getOriginalEmail(); }
 
     @Override
     public boolean isAccountNonExpired() { return true; }
@@ -47,10 +48,10 @@ public class MyUserDetails implements UserDetails {
     public boolean isAccountNonLocked() { return true ;}
 
     @Override
-    public boolean isCredentialsNonExpired() { return !user.getCredentials().getExpired(); }
+    public boolean isCredentialsNonExpired() { return !credentials.getExpired(); }
 
     @Override
     public boolean isEnabled() {
-        return user.isEnabled();
+        return credentials.isEnabled();
     }
 }

@@ -99,22 +99,14 @@ qbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additio
 qbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Activities/Controller/QuizController.java,b\d\bdfd2980afc3dc32e87d783787bc8dbf1e493bcc
 £
 sbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Controller/UpdateController.java,d\7\d7a30d93c05ad354f39aa8879201a5c85ff41ac1
-î
-dbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Model/LoginRequest.java,b\1\b15ddaeea49919683bdd1ab3cc8f29585c3bac14
 ë
 abackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Model/Tag.java,4\c\4c5c66d20fe2030e9c91ace9577d7f4583681581
-ù
-mbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Service/LoginRequestService.java,0\8\08237acc4f81d407fac307f5b34c7560d3de6e35
 í
 bbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Model/Note.java,f\6\f6f02e1f970ea032584eb74fd64ab8e4e5d05968
-£
-sbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Repository/LoginRequestRepository.java,9\0\90bd5dc72292489a29a99f7cd558c4680180d5c2
 î
 dbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Model/Update.java,4\3\4316bc0d9328c962cf7076fd74b22987bcfc5817
 õ
 kbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Model/AnimationType.java,4\c\4cd1590909c6dba7a878971fc37f23e045231e69
-£
-sbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Controller/LoginRequestController.java,e\d\ede5a631f25ba1c923d98784fe181657e1c07fab
 ñ
 fbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Model/Feedback.java,6\5\6530dfd505258ecd019167cbbf89ea1e01209004
 î
@@ -137,8 +129,6 @@ fbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Securit
 obackend-java-springboot-server/src/main/java/com/example/javaspringboot/Security/Request/AuthEntryPointJwt.java,b\d\bddbb1aad10fa25008b2bd7f976c5ca35704480d
 ù
 mbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Security/Request/AuthTokenFilter.java,4\2\42afcd9e6198466f398f9ad2538d86caab4f6187
-í
-bbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Model/EnumResult.java,8\4\844fa13226661e9b2b98f596962ecbcc3fec716c
 ü
 obackend-java-springboot-server/src/main/java/com/example/javaspringboot/Security/Response/RegisterResponse.java,4\e\4e505ccbfcbeb860a8d16c54b7e7fd15fe8bdc9c
 ü
@@ -189,8 +179,6 @@ ubackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additio
 kbackend-java-springboot-server/src/main/java/com/example/javaspringboot/User/Controller/AuthController.java,c\c\cc6ecc5e1907bd07082aa65a4709eb3f6fba5eff
 ¢
 rbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Service/ContactFormService.java,9\4\94773ce2ebc60ebac1c911b73458133bc2fc96f3
-ñ
-fbackend-java-springboot-server/src/main/java/com/example/javaspringboot/JavaSpringBootApplication.java,8\2\8252aed887286f9604aab93cd8e4fa14dd43f437
 ¢
 rbackend-java-springboot-server/src/main/java/com/example/javaspringboot/Additional/Repository/ContactFormRepo.java,b\8\b812bbebcbecec80be731035f6273b66cf973bbc
 õ
@@ -211,3 +199,5 @@ V
 &backend-java-springboot-server/pom.xml,2\9\29e60adf1731d1745a09552be9eff4eb66f2b72d
 X
 (backend-java-springboot-server/readme.md,d\9\d9dea464aa2aea3765aa2855db401d6a6b8cc07b
+ñ
+fbackend-java-springboot-server/src/main/java/com/example/javaspringboot/JavaSpringBootApplication.java,8\2\8252aed887286f9604aab93cd8e4fa14dd43f437

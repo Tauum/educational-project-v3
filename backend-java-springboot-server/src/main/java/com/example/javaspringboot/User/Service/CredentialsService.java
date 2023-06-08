@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CredentialsService {
-  private CredentialsRepository credentialsRepo;
+  private final CredentialsRepository credentialsRepo;
 
   public CredentialsService(CredentialsRepository credentialsRepo) {
     this.credentialsRepo = credentialsRepo;

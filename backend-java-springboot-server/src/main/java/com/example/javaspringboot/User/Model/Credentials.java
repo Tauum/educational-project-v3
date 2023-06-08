@@ -1,12 +1,19 @@
 package com.example.javaspringboot.User.Model;
 
 import com.example.javaspringboot.User.UserUtility;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import lombok.AllArgsConstructor;
@@ -17,7 +24,7 @@ import org.hibernate.annotations.Type;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Entity //needed for database mapping
 @Table(name = "Credentials")
-public class Credentials {
+public class Credentials implements Serializable {
 
   @Id
   @GeneratedValue(generator = "uuid2")
@@ -33,25 +40,38 @@ public class Credentials {
   @Column(unique = true, nullable = false)
   private String password;
 
-//  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "login")
-//  @JoinTable(name = "user_notes",
-//      joinColumns = @JoinColumn(name = "credentials_id"),
-//      inverseJoinColumns = @JoinColumn(name = "login_id"))
-//  private Set<Login> Login = new HashSet<>();
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "Credentials_roles",
+      joinColumns = @JoinColumn(name = "credentials_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<Role> roles = new HashSet<>();
 
   @Column(nullable = true)
   public LocalDateTime lastUpdated;
 
   public Boolean expired = false;
+  private boolean enabled=true;
 
   @Version
   public Long version = 0L;
 
-  public Credentials(String email, String password) {
+  public Credentials(String currentEmail, String password) {
+    this.originalEmail = currentEmail;
+    this.currentEmail = currentEmail;
+    this.password = password;
+  }
+
+  public Credentials(String email, String password, Set<Role> roles) {
     this.originalEmail = email;
     this.currentEmail = email;
     this.password = password;
+    this.roles = roles;
+    this.enabled = true;
   }
+
+
+
+
 
   public void setCurrentEmail(String currentEmail) {
     if (this.getOriginalEmail() == null) this.setOriginalEmail(this.getCurrentEmail());

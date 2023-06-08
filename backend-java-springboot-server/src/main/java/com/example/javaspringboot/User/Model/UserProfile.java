@@ -1,5 +1,6 @@
 package com.example.javaspringboot.User.Model;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -24,6 +25,11 @@ public class UserProfile {
 
     private boolean initialRegister = false;
 
+    private LocalDateTime createdOn;
+
+    private Long version;
+
+    private boolean credentialsExpired = false;
     private boolean enabled=true;
     private boolean hidden=false;
 
@@ -35,9 +41,12 @@ public class UserProfile {
             .id(user.getId())
             .personalInformation(user.getPersonalInformation())
             .credentialsCurrentEmail(user.getCredentials().getCurrentEmail())
-            .roles(user.getRoles())
-            .enabled(user.isEnabled())
+            .createdOn(user.getCreation())
+            .version(user.getVersion())
+            .roles(user.getCredentials().getRoles())
+            .enabled(user.getCredentials().isEnabled())
             .hidden(user.isHidden())
+            .credentialsExpired(user.getCredentials().getExpired())
             .build();
     }
 

@@ -8,27 +8,23 @@ import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.Role;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
-import com.example.javaspringboot.User.Repository.RoleRepository;
 import com.example.javaspringboot.User.Repository.UserRepository;
 import com.example.javaspringboot.User.UserUtility;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 import javax.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    @Autowired
     private CredentialsService credentialsService;
     private final UserRepository userRepo;
-    private RoleRepository roleRepo;
+    private RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 //    private ModuleService moduleService;
 //
@@ -36,13 +32,14 @@ public class UserService {
 //    private SubmittedQuizService sQService;
 //    private SubmittedHangmanService sHService;
 //
-    public UserService(UserRepository userRepo, RoleRepository roleRepo, PasswordEncoder passwordEncoder
+    public UserService(UserRepository userRepo, RoleService roleService, PasswordEncoder passwordEncoder, CredentialsService credentialsService
 //                      ,@Lazy ModuleService moduleService,
 //                       SubmittedShifterService ssService, SubmittedQuizService sQService, SubmittedHangmanService sHService
-                       ) {
+     ){
         this.userRepo = userRepo;
-        this.roleRepo = roleRepo;
+        this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+        this.credentialsService = credentialsService;
 //        this.moduleService = moduleService;
 //        this.ssService = ssService;
 //        this.sQService = sQService;
@@ -70,66 +67,91 @@ public class UserService {
   public EnumResult addUser(Registration registration) {
 
    EnumResult validation = UserUtility.validateRegistration(registration);
-
    if (validation != EnumResult.ACCEPTED) return validation;
-
    Credentials existingCredentials = credentialsService.findCredentialsByCurrentEmail(registration.getEmail());
 
     if (existingCredentials != null) {
       return EnumResult.CREDENTIALS_EXIST;
     }
 
-   registration.setPassword(
+    Role undefined = roleService.findRoleByName(EnumRole.ROLE_UNDEFINED);
+    HashSet roles = new HashSet<Role>();
+    roles.add(undefined);
+
+    registration.setPassword(
         passwordEncoder.encode(registration.getPassword()));
 
     User user = new User(
-        new Credentials(registration.getEmail(), registration.getPassword()),
-        new PersonalInformation(registration.getDateOfBirth()),
-        registration.isTermsAndConditions(), LocalDateTime.now());
 
-    Set<Role> roles = new HashSet<>();
-    Role undefined = roleRepo.findByName(EnumRole.ROLE_UNDEFINED);
-    if (undefined == null) { roleRepo.save(new Role(EnumRole.ROLE_UNDEFINED)); }
-    roles.add(undefined);
+        new Credentials(
+            registration.getEmail(),
+            registration.getPassword(),
+            roles),
 
-    user.setRoles(roles);
+        new PersonalInformation(
+            registration.getDateOfBirth()),
+          registration.isTermsAndConditions(),
+          LocalDateTime.now());
+
 
     userRepo.save(user);
     return EnumResult.ACCEPTED;
   }
 
+  public UserProfile findUserProfileUserByCurrentEmail(String email) {
+//    Optional<User> user = userRepo.findByCredentialsOriginalEmail(email); // will always return null
+    Optional<User> user = findUserByCredentialsCurrentEmail(email);
 
-    public List<User> findAll() {
-        return userRepo.findAll();
-    }
+    if (user.isPresent()){
+      UserProfile profile = new UserProfile();
+      profile.buildFromUser(user.get());
 
-    public Boolean addRoleToUser(UUID userId, Long roleId){
-        User findUser = findUserById(userId);
-        Role findRole = roleRepo.findRoleById(roleId);
-        if (findUser != null && findRole != null && !findUser.getRoles().contains(findRole)) {
-            try {
-                findUser.getRoles().add(findRole);
-                userRepo.save(findUser);
-                return true;
-            }
-            catch (Exception e) { return null; }
-        }
-        return null;
-    }
+//            List<ModuleRegisterDtoRole> modules  = moduleService.findAllModulesRegisterDTOForUser(user);
+//            userProfile.setModules(modules);
 
-    public Boolean removeRoleFromUser(UUID userId, Long roleId){
-        User findUser = findUserById(userId);
-        Role findRole = roleRepo.findRoleById(roleId);
-        if (findUser != null && findRole != null && findUser.getRoles().contains(findRole)) {
-            try {
-                findUser.getRoles().remove(findRole);
-                userRepo.save(findUser);
-                return true;
-            }
-            catch (Exception e) { return null;  }
-        }
-        return null;
+      return profile;
     }
+    return null;
+  }
+
+  public Optional<User> findUserByCredentialsCurrentEmail(String email) {
+    Credentials credentials = credentialsService.findCredentialsByCurrentEmail(email);
+    if(credentials == null) return null;
+    return Optional.ofNullable(userRepo.findByCredentials(credentials.getId()));
+  }
+
+
+  public List<User> findAll() {
+      return userRepo.findAll();
+  }
+
+//  public Boolean addRoleToUser(UUID userId, Long roleId){
+//      User findUser = findUserById(userId);
+//      Role findRole = roleRepo.findRoleById(roleId);
+//      if (findUser != null && findRole != null && !findUser.getRoles().contains(findRole)) {
+//          try {
+//              findUser.getRoles().add(findRole);
+//              userRepo.save(findUser);
+//              return true;
+//          }
+//          catch (Exception e) { return null; }
+//      }
+//      return null;
+//  }
+//
+//  public Boolean removeRoleFromUser(UUID userId, Long roleId){
+//      User findUser = findUserById(userId);
+//      Role findRole = roleRepo.findRoleById(roleId);
+//      if (findUser != null && findRole != null && findUser.getRoles().contains(findRole)) {
+//          try {
+//              findUser.getRoles().remove(findRole);
+//              userRepo.save(findUser);
+//              return true;
+//          }
+//          catch (Exception e) { return null;  }
+//      }
+//      return null;
+//  }
 
 //    public boolean initialRegister(InitialRegister initialRegister, Long id) {
 //        User find = findUserById(id);
@@ -233,20 +255,6 @@ public class UserService {
         return null;
     }
 
-    public User findUserByEmail(String email) {
-        Optional<User> user = userRepo.findByCredentialsCurrentEmail(email);
-        if (user.isPresent()) { return user.orElseThrow(); }
-        return null;
-    }
-
-    public List<User> findByRoleContains(Long roleId) {
-        Role findRole = roleRepo.findRoleById(roleId);
-        if (findRole != null){
-            return userRepo.findAllByRolesContains(findRole);
-        }
-        return null;
-    }
-
   //fix this to not be plain text and more complex
 //    public Boolean resetUserPassword(String email) {
 //        User findUser = userRepo.findUserByEmail(email);
@@ -271,20 +279,7 @@ public class UserService {
 //    }
 
 
-    public UserProfile findUserProfileUserByEmail(String email) {
-        Optional<User> user = userRepo.findByCredentialsCurrentEmail(email);
 
-        if (user.isPresent()){
-            UserProfile profile = new UserProfile();
-            profile.buildFromUser(user.get());
-
-//            List<ModuleRegisterDtoRole> modules  = moduleService.findAllModulesRegisterDTOForUser(user);
-//            userProfile.setModules(modules);
-
-            return profile;
-        }
-        return null;
-    }
 
 //    public UserProfile findUserProfileUserById(Long id) {
 //        User user = userRepo.findUserById(id);

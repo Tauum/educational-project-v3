@@ -86,7 +86,7 @@ public class AuthService {
 
   public LoginResponse filterLogin(MyUserDetails userDetails){
     if (userDetails.getEmail() != null || !userDetails.getEmail().isBlank()) {
-      UserProfile userProfile = userService.findUserProfileUserByEmail(userDetails.getEmail());
+      UserProfile userProfile = userService.findUserProfileUserByCurrentEmail(userDetails.getEmail());
       if (userProfile != null) {
         if (!userProfile.isEnabled()){
           credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.DISABLED);
@@ -94,6 +94,14 @@ public class AuthService {
               null,
               null,
               EnumResult.DISABLED,
+              403);
+        }
+        else if (userProfile.isCredentialsExpired()){
+          credentialsLoginService.createCredentialsLogin(userDetails.getEmail(),EnumResult.CREDENTIALS_EXPIRED);
+          return new LoginResponse(
+              null,
+              null,
+              EnumResult.CREDENTIALS_EXPIRED,
               403);
         }
         else {
