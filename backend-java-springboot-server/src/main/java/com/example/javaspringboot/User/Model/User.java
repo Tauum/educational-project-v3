@@ -23,8 +23,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Data @NoArgsConstructor @AllArgsConstructor @Entity //needed for database mapping
 @Table(name = "User") @Builder
@@ -55,17 +57,17 @@ public class User implements Serializable {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private PersonalInformation personalInformation;
 
-    @Column(name = "terms_and_conditions")
     private boolean termsAndConditions = false;
 
-    @Column(name = "initial_register")
     private boolean initialRegister = false;
 
     private boolean hidden=false;
 
+    @CreationTimestamp
     private LocalDateTime creation;
 
     @Column(nullable = true)
+    @UpdateTimestamp
     public LocalDateTime last_updated;
 
     @Version
@@ -81,13 +83,11 @@ public class User implements Serializable {
 
     public User(Credentials credentials,
         PersonalInformation personalInformation,
-        boolean termsAndConditions,
-        LocalDateTime creation)
+        boolean termsAndConditions)
     {
         this.credentials = credentials;
         this.personalInformation = personalInformation;
         this.termsAndConditions = termsAndConditions;
-        this.creation = creation;
     }
 }
 

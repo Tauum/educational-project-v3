@@ -10,15 +10,21 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PersonalInformationRepository extends JpaRepository<PersonalInformation, UUID> {
 
-  List<PersonalInformation> getByInstitutionIdContains(String id);
+  List<PersonalInformation> getByInstitutionIdContainsIgnoreCase(String institutionId);
   List<PersonalInformation> getByDateOfBirth(LocalDate dateOfBirth);
+
+  List<PersonalInformation> getByDateOfBirthAfter(LocalDate dateOfBirth);
+  List<PersonalInformation> getByDateOfBirthBefore(LocalDate dateOfBirth);
+
+  List<PersonalInformation> getByDateOfBirthBetween(LocalDate start, LocalDate end);
   List<PersonalInformation> getByAvatarUrl(String avatarUrl);
   List<PersonalInformation> getByAvatar(int avatar);
   List<PersonalInformation> getBycountryCode(String countryCode);
   List<PersonalInformation> getByLanguage(String language);
-  List<PersonalInformation> getByFirstNameContains(String firstName);
-  List<PersonalInformation> getByLastNameContains(String lastName);
-  List<PersonalInformation> getByFirstNameContainsAndLastNameContains(String firstName, String lastName);
+  List<PersonalInformation> getByFirstNameContainsIgnoreCase(String firstName);
+  List<PersonalInformation> getByLastNameContainsIgnoreCase(String lastName);
+  List<PersonalInformation> getByFirstNameIgnoreCaseContainsAndLastNameIgnoreCaseContains(String firstName, String lastName);
 
   void deleteById(UUID id);
+
 }

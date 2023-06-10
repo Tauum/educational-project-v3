@@ -1,4 +1,4 @@
-package com.example.javaspringboot.Security.Response;
+package com.example.javaspringboot.Utility.Response;
 
 import com.example.javaspringboot.User.Model.UserProfile;
 import lombok.AllArgsConstructor;

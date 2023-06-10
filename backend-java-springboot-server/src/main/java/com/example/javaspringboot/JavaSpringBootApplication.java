@@ -4,7 +4,7 @@ import com.example.javaspringboot.Security.Model.Credentials;
 import com.example.javaspringboot.Security.Model.EnumRole;
 import com.example.javaspringboot.Security.Model.Role;
 import com.example.javaspringboot.Security.Repository.RoleRepository;
-import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Security.Service.MyUserDetailsService;
 import com.example.javaspringboot.Security.Service.TestService;
 import com.example.javaspringboot.User.Model.Registration;

@@ -1,6 +1,6 @@
 package com.example.javaspringboot.Utility;
 
-import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.User.Model.Registration;
 import java.time.LocalDate;
 import lombok.experimental.UtilityClass;

@@ -1,6 +1,6 @@
 package com.example.javaspringboot.Security.Model;
 
-import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import javax.persistence.CascadeType;

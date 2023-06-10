@@ -1,6 +1,6 @@
 package com.example.javaspringboot.Security.Controller;
 
-import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Security.Service.TestService;
 import com.example.javaspringboot.User.Model.Registration;
 import org.springframework.http.HttpStatus;

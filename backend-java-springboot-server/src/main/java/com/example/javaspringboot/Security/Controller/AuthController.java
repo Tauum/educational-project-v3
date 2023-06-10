@@ -1,9 +1,9 @@
 package com.example.javaspringboot.Security.Controller;
 
 import com.example.javaspringboot.Security.Request.LoginRequest;
-import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.Security.Response.LoginResponse;
-import com.example.javaspringboot.Security.Response.RegisterResponse;
+import com.example.javaspringboot.Utility.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.LoginResponse;
+import com.example.javaspringboot.Utility.Response.RegisterResponse;
 import com.example.javaspringboot.Security.Service.AuthService;
 import com.example.javaspringboot.User.Model.Registration;
 import javax.servlet.http.HttpServletRequest;

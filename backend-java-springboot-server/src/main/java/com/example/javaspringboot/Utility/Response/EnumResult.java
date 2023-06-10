@@ -1,4 +1,4 @@
-package com.example.javaspringboot.Security.Response;
+package com.example.javaspringboot.Utility.Response;
 
 public enum EnumResult {
 
@@ -9,6 +9,7 @@ public enum EnumResult {
   DATE_OF_BIRTH_REQUIREMENTS_NOT_MET,
   TERMS_REQUIREMENTS_NOT_MET,
   UNKNOWN,
+  NO_ID_PASSED,
   NOT_LOGGED_IN,
 
   LOGOUT,
@@ -19,5 +20,7 @@ public enum EnumResult {
   NOT_FOUND,
   ERROR,
   ALREADY_EXISTS,
-  DOES_NOT_EXIST
+  DOES_NOT_EXIST,
+  UNDETERMINED,
+  REMOVE
 }

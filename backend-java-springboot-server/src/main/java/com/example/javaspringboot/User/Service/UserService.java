@@ -3,7 +3,7 @@ package com.example.javaspringboot.User.Service;
 import com.example.javaspringboot.Security.Model.Credentials;
 import com.example.javaspringboot.Security.Model.EnumRole;
 import com.example.javaspringboot.Security.Model.Role;
-import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Security.Service.CredentialsService;
 import com.example.javaspringboot.Security.Service.RoleService;
 import com.example.javaspringboot.User.Model.PersonalInformation;
@@ -75,8 +75,7 @@ public class UserService {
 
         new PersonalInformation(
             registration.getDateOfBirth()),
-          registration.isTermsAndConditions(),
-          LocalDateTime.now());
+          registration.isTermsAndConditions());
 
 
     userRepo.save(user);
@@ -113,33 +112,6 @@ public class UserService {
       return userRepo.findAll();
   }
 
-//  public Boolean addRoleToUser(UUID userId, Long roleId){
-//      User findUser = findUserById(userId);
-//      Role findRole = roleRepo.findRoleById(roleId);
-//      if (findUser != null && findRole != null && !findUser.getRoles().contains(findRole)) {
-//          try {
-//              findUser.getRoles().add(findRole);
-//              userRepo.save(findUser);
-//              return true;
-//          }
-//          catch (Exception e) { return null; }
-//      }
-//      return null;
-//  }
-//
-//  public Boolean removeRoleFromUser(UUID userId, Long roleId){
-//      User findUser = findUserById(userId);
-//      Role findRole = roleRepo.findRoleById(roleId);
-//      if (findUser != null && findRole != null && findUser.getRoles().contains(findRole)) {
-//          try {
-//              findUser.getRoles().remove(findRole);
-//              userRepo.save(findUser);
-//              return true;
-//          }
-//          catch (Exception e) { return null;  }
-//      }
-//      return null;
-//  }
 
 //    public boolean initialRegister(InitialRegister initialRegister, Long id) {
 //        User find = findUserById(id);
@@ -224,14 +196,15 @@ public class UserService {
 //    }
 
     //query method (auto generates method in spring back-backend)
+  //TODO: RECURSIVELY REMOVE ROLES THEN DELETE EVERYTHING SAME WITH PERSONAL INFORMATION AND MODULES
     @Transactional
     public void deleteUser(UUID id) {
-//        User findUser = findUserById(id);
-//        if(findUser != null){
-//            findUser.setRoles(new HashSet<>());
-//            userRepo.save(findUser);
-//            userRepo.deleteUserById(id);
-//        }
+        User findUser = findUserById(id);
+        if(findUser != null){
+//            credentialsService.removeRoleFromUser();
+            userRepo.save(findUser);
+            userRepo.deleteUserById(id);
+        }
         userRepo.deleteUserById(id);
     }
 

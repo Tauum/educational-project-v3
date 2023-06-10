@@ -1,7 +1,7 @@
 package com.example.javaspringboot.User.Controller;
 
-import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.User.Records.roleCredentials;
+import com.example.javaspringboot.Utility.Response.EnumResult;
+import com.example.javaspringboot.User.Records.RoleCredentialsRecord;
 import com.example.javaspringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -78,12 +78,12 @@ public class UserController {
 //    }
 //
     @PostMapping("/role/add")
-    public ResponseEntity<EnumResult> addRoleToUserByIds(@RequestBody roleCredentials json) {
+    public ResponseEntity<EnumResult> addRoleToUserByIds(@RequestBody RoleCredentialsRecord json) {
         return new ResponseEntity<>(userService.addRoleToUser(json.id(), json.role()), HttpStatus.OK);
     }
 
     @PostMapping("/role/remove")
-    public ResponseEntity<EnumResult> removeRoleFromUserByIds(@RequestBody roleCredentials json) {
+    public ResponseEntity<EnumResult> removeRoleFromUserByIds(@RequestBody RoleCredentialsRecord json) {
         return new ResponseEntity<>(userService.removeRoleFromUser(json.id(), json.role()), HttpStatus.OK);
     }
 

@@ -1,13 +1,18 @@
 package com.example.javaspringboot.User.Service;
 
-import com.example.javaspringboot.Security.Response.EnumResult;
+import static com.example.javaspringboot.Utility.GeneralUtility.isNullOrWhitespace;
+import static com.example.javaspringboot.Utility.GeneralUtility.isValidDateTime;
+
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.User.Model.PersonalInformation;
 import com.example.javaspringboot.User.Repository.PersonalInformationRepository;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+import org.komamitsu.fastuuidparser.FastUuidParser;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PersonalInformationService {
 
   private PersonalInformationRepository personalInformaitonRepo;
@@ -16,32 +21,50 @@ public class PersonalInformationService {
     this.personalInformaitonRepo = personalInformaitonRepo;
   }
 
-  public Optional<PersonalInformation> findById(UUID id){
-    return personalInformaitonRepo.findById(id);
+  public List<PersonalInformation> findAll(){
+    return personalInformaitonRepo.findAll();
   }
-    public List<PersonalInformation> findByInstitutionalId(String id){
-    return personalInformaitonRepo.getByInstitutionIdContains(id);
+
+  public Optional<PersonalInformation> findById(String uuid){
+    if (isNullOrWhitespace(uuid)) return null;
+    return personalInformaitonRepo.findById(FastUuidParser.fromString(uuid));
+  }
+
+    public List<PersonalInformation> findByInstitutionalId(String institutionId){
+    if (isNullOrWhitespace(institutionId)) return null;
+    return personalInformaitonRepo.getByInstitutionIdContainsIgnoreCase(institutionId);
+  }
+
+  public List<PersonalInformation> findByNames(String firstName, String lastName){
+    if (isNullOrWhitespace(firstName) && isNullOrWhitespace(lastName)) return null;
+    else if (!isNullOrWhitespace(firstName) && !isNullOrWhitespace(lastName)) return personalInformaitonRepo.getByFirstNameIgnoreCaseContainsAndLastNameIgnoreCaseContains(firstName, lastName);
+    else if (isNullOrWhitespace(firstName) && !isNullOrWhitespace(lastName)) return personalInformaitonRepo.getByLastNameContainsIgnoreCase(lastName);
+    else if (!isNullOrWhitespace(firstName) && isNullOrWhitespace(lastName)) return personalInformaitonRepo.getByFirstNameContainsIgnoreCase(firstName);
+    return null;
   }
 
   public List<PersonalInformation> findByDateOfBirth(LocalDate dateOfBirth){
+    if (isValidDateTime(dateOfBirth.toString())) return null; // TODO: need fix if no parameter is passed
     return personalInformaitonRepo.getByDateOfBirth(dateOfBirth);
+  }
+  public List<PersonalInformation> findByDateOfBirthBefore(LocalDate dateOfBirth){
+    if (isValidDateTime(dateOfBirth.toString())) return null;// TODO: need fix if no parameter is passed
+    return personalInformaitonRepo.getByDateOfBirthBefore(dateOfBirth);
+  }
+  public List<PersonalInformation> findByDateOfBirthAfter(LocalDate dateOfBirth){
+    if (isValidDateTime(dateOfBirth.toString())) return null;// TODO: need fix if no parameter is passed
+    return personalInformaitonRepo.getByDateOfBirthAfter(dateOfBirth);
+  }
+  public List<PersonalInformation> findByDateOfBirthBetween(LocalDate start, LocalDate end){
+    if (isValidDateTime(start.toString()) || isValidDateTime(end.toString())) return null;// TODO: need fix if no parameter is passed
+    return personalInformaitonRepo.getByDateOfBirthBetween(start, end);
   }
 
   public List<PersonalInformation> findBycountryCode(String countryCode){
     return personalInformaitonRepo.getBycountryCode(countryCode);
   }
-
   public List<PersonalInformation> findByLanguage(String language){
     return personalInformaitonRepo.getByLanguage(language);
-  }
-
-  public List<PersonalInformation> findByNames(String firstName, String lastName){
-    if (firstName != null && !firstName.isBlank() && lastName != null && !lastName.isBlank()){
-      return personalInformaitonRepo.getByFirstNameContainsAndLastNameContains(firstName,lastName);
-    }
-    if (firstName == null || firstName.isBlank()) return personalInformaitonRepo.getByLastNameContains(lastName);
-    if (lastName == null || lastName.isBlank()) return personalInformaitonRepo.getByFirstNameContains(firstName);
-    return null;
   }
 
   public List<PersonalInformation> findByAvatar(int avatar){
@@ -52,10 +75,11 @@ public class PersonalInformationService {
   }
 
   public EnumResult update(PersonalInformation personalInformation){
-    Optional<PersonalInformation> find = personalInformaitonRepo.findById(personalInformation.getId());
+    if (personalInformation.getId() == null) return EnumResult.NO_ID_PASSED;
+    Optional<PersonalInformation> find = findById(personalInformation.getId().toString());
     if (find.isPresent()){
         try{
-          // TODO: IMPLEMENT
+          find.get().update(personalInformation);
 
           personalInformaitonRepo.save(find.get());
         }
@@ -68,8 +92,8 @@ public class PersonalInformationService {
     return EnumResult.NOT_FOUND;
   }
 
-  public EnumResult delete(PersonalInformation personalInformation){
-    Optional<PersonalInformation> find = personalInformaitonRepo.findById(personalInformation.getId());
+  public EnumResult delete(String uuid){
+    Optional<PersonalInformation> find = findById(uuid);
     if (find.isPresent()){
       try{
         // TODO: IMPLEMENT
@@ -83,6 +107,5 @@ public class PersonalInformationService {
     }
     return EnumResult.NOT_FOUND;
   }
-
 
 }
