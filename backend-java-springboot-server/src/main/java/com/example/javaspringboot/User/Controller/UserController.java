@@ -1,8 +1,14 @@
 package com.example.javaspringboot.User.Controller;
 
+import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.User.Records.roleCredentials;
 import com.example.javaspringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -71,23 +77,17 @@ public class UserController {
 //        return new ResponseEntity<>(attempt, HttpStatus.NOT_FOUND);
 //    }
 //
-//    @PostMapping("/addRole")
-//    public ResponseEntity<Boolean> addRoleToUserByIds(@RequestBody Long userId, Long roleId) {
-//        Boolean attempt = userService.addRoleToUser(userId, roleId);
-//        return new ResponseEntity<>(attempt, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/removeRole")
-//    public ResponseEntity<Boolean> removeRoleToUserByIds(@RequestBody Long userId, Long roleId) {
-//        Boolean attempt = userService.removeRoleFromUser(userId, roleId);
-//        return new ResponseEntity<>(attempt, HttpStatus.OK);
-//    }
-//
-//    @PostMapping("/add")
-//    public ResponseEntity<?> addUser(@RequestBody User user) {
-//        if (userService.addUser(user)){  return new ResponseEntity<>(HttpStatus.CREATED); }
-//        return new ResponseEntity<>(HttpStatus.CONFLICT);
-//    }
+    @PostMapping("/role/add")
+    public ResponseEntity<EnumResult> addRoleToUserByIds(@RequestBody roleCredentials json) {
+        return new ResponseEntity<>(userService.addRoleToUser(json.id(), json.role()), HttpStatus.OK);
+    }
+
+    @PostMapping("/role/remove")
+    public ResponseEntity<EnumResult> removeRoleFromUserByIds(@RequestBody roleCredentials json) {
+        return new ResponseEntity<>(userService.removeRoleFromUser(json.id(), json.role()), HttpStatus.OK);
+    }
+
+
 //
 //    @PutMapping("/initialRegister/{id}")
 //    public ResponseEntity<?> addUser(@RequestBody InitialRegister initialRegister, @PathVariable("id") Long id) {

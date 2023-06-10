@@ -1,6 +1,6 @@
-package com.example.javaspringboot.User.Repository;
+package com.example.javaspringboot.Security.Repository;
 
-import com.example.javaspringboot.User.Model.CredentialsLogin;
+import com.example.javaspringboot.Security.Model.CredentialsLogin;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;

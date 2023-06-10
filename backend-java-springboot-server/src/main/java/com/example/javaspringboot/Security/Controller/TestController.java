@@ -1,7 +1,14 @@
-package com.example.javaspringboot.User.Controller;
+package com.example.javaspringboot.Security.Controller;
 
+import com.example.javaspringboot.Security.Response.EnumResult;
+import com.example.javaspringboot.Security.Service.TestService;
+import com.example.javaspringboot.User.Model.Registration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Test")
 public class TestController {
+
+    private TestService testService;
+
+    public TestController(TestService testService) {
+        this.testService = testService;
+    }
 
     @GetMapping("/all")
     public String allAccess() {
@@ -34,4 +47,10 @@ public class TestController {
     public String adminAccess() {
         return "Admin Board.";
     }
+
+    @PostMapping("/registerSystem")
+    public ResponseEntity<EnumResult> registerSystem(@RequestBody Registration registration) {
+        return new ResponseEntity<>(testService.addUser(registration), HttpStatus.OK);
+    }
+
 }

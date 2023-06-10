@@ -1,11 +1,11 @@
-package com.example.javaspringboot.User.Controller;
+package com.example.javaspringboot.Security.Controller;
 
+import com.example.javaspringboot.Security.Request.LoginRequest;
+import com.example.javaspringboot.Security.Response.EnumResult;
 import com.example.javaspringboot.Security.Response.LoginResponse;
 import com.example.javaspringboot.Security.Response.RegisterResponse;
-import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.Security.Request.LoginRequest;
+import com.example.javaspringboot.Security.Service.AuthService;
 import com.example.javaspringboot.User.Model.Registration;
-import com.example.javaspringboot.User.Service.AuthService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600, allowCredentials = "true")
 @CrossOrigin( originPatterns = "*", maxAge = 3600, allowCredentials = "true")
 
+//@PreAuthorize("*") // TODO: FIGURE OUT BECAUSE THIS MAKES MUCH MORE SENSE
 @RestController
 @RequestMapping("/Auth")
 public class AuthController {
@@ -44,10 +45,18 @@ public class AuthController {
             .body(loginResponse.getUserProfile());
     }
 
+//    @PreAuthorize("")
     @GetMapping("/whoami")
     public ResponseEntity<?> whoAmI(HttpServletRequest request) {
-
         LoginResponse loginResponse = authService.whoAmI(request);
+
+        if (loginResponse == null) {
+            return  ResponseEntity.status(loginResponse.getHttpCode())
+                .header(HttpHeaders.SET_COOKIE, loginResponse.getResponseCookie().toString())
+                .header(HttpHeaders.WARNING,loginResponse.getEnumResult().toString())
+                .body(EnumResult.ACCEPTED.toString() + "" + EnumResult.NOT_LOGGED_IN.toString());
+        }
+
             return  ResponseEntity.status(loginResponse.getHttpCode())
                 .header(HttpHeaders.SET_COOKIE, loginResponse.getResponseCookie().toString())
                 .header(HttpHeaders.WARNING,loginResponse.getEnumResult().toString())
@@ -72,7 +81,7 @@ public class AuthController {
         return  ResponseEntity.status(logoutResponse.getHttpCode())
             .header(HttpHeaders.SET_COOKIE, logoutResponse.getResponseCookie().toString())
             .header(HttpHeaders.WARNING,logoutResponse.getEnumResult().toString())
-                .body(EnumResult.ACCEPTED.toString() + "" + EnumResult.LOGOUT.toString());
+                .body(EnumResult.ACCEPTED.toString() + "" + EnumResult.NOT_LOGGED_IN.toString());
 
     }
 

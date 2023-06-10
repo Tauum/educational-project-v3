@@ -1,4 +1,4 @@
-package com.example.javaspringboot.User;
+package com.example.javaspringboot.Utility;
 
 import com.example.javaspringboot.Security.Response.EnumResult;
 import com.example.javaspringboot.User.Model.Registration;

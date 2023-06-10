@@ -1,6 +1,6 @@
-package com.example.javaspringboot.User.Model;
+package com.example.javaspringboot.Security.Model;
 
-import com.example.javaspringboot.User.UserUtility;
+import com.example.javaspringboot.Utility.UserUtility;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;

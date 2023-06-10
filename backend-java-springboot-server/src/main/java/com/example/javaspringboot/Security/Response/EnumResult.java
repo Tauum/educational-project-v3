@@ -17,4 +17,7 @@ public enum EnumResult {
   ACCEPTED,
   DISABLED,
   NOT_FOUND,
+  ERROR,
+  ALREADY_EXISTS,
+  DOES_NOT_EXIST
 }

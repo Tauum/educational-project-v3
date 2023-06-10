@@ -4,7 +4,7 @@ import static org.springframework.http.HttpMethod.GET;
 
 import com.example.javaspringboot.Security.Request.AuthEntryPointJwt;
 import com.example.javaspringboot.Security.Request.AuthTokenFilter;
-import com.example.javaspringboot.User.Service.MyUserDetailsService;
+import com.example.javaspringboot.Security.Service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -57,7 +57,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-                .authorizeRequests().antMatchers("/Auth/**", "/Users/add", "/Users/initialRegister/**" ,"/Users/getUserProfileAndStatsById/**",
+                .authorizeRequests()
+            .antMatchers("/Auth/signup", "/Auth/whoami", "/Auth/signin","/Auth/signout").permitAll() // TODO: FIGURE OUT WHY THE FUCK NOT WORK
+
+            .antMatchers(
+                "/Users/initialRegister/**" ,"/Users/getUserProfileAndStatsById/**",
                 "/Modules/dto", "/Modules/dto/byCode/**",
                 "/Updates", "/Updates/Recent", "/Test/all", "/Extras/newestOrder-hideHidden", "/Extras/containingTitle-hideHidden/*" ,"/Extras/viewed/*", "/ContactForms/add"
                 ).permitAll()
@@ -79,16 +83,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 ).hasAnyAuthority("ROLE_STUDENT","ROLE_UNDEFINED", "ROLE_STAFF", "ROLE_ADMIN")
 //                .hasAnyAuthority("STUDENT","UNDEFINED", "STAFF", "ADMIN")
 
-                .antMatchers("/**", "/**/**", "/**/**/**"
+                .antMatchers("/**", "/**/**", "/**/**/**", "/Test/admin"
 //                        "/User", "/ContactForms", "/Extras", "/Feedbacks", "/Modules", "/QuickNotes", "/Updates",
 //                        "/Hangmen", "/Matches", "/Propagates", "/Quizzes", "/Swipes",
 //                        "/SubmittedHangmen", "/SubmittedMatches","SubmittedPropagates","/SubmittedQuestion","/SubmittedQuizzes","/SubmittedSwipes",
 //                        "/Test/staff"
-                ).hasAnyAuthority("ROLE_STAFF", "ROLE_ADMIN")
-
-                .antMatchers("/Test/admin").hasAnyAuthority("ROLE_ADMIN")
-
-                .anyRequest().authenticated().and().logout().permitAll();
+                ).hasAnyAuthority("ROLE_STAFF", "ROLE_ADMIN", "ROLE_SYSTEM");
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }

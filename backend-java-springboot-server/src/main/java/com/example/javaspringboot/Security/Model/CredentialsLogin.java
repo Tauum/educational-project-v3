@@ -1,4 +1,4 @@
-package com.example.javaspringboot.User.Model;
+package com.example.javaspringboot.Security.Model;
 
 import com.example.javaspringboot.Security.Response.EnumResult;
 import java.time.LocalDateTime;

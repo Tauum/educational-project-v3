@@ -1,6 +1,7 @@
 package com.example.javaspringboot.User.Model;
 
 import com.example.javaspringboot.Additional.Model.Note;
+import com.example.javaspringboot.Security.Model.Credentials;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;

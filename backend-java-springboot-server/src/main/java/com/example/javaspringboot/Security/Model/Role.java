@@ -1,5 +1,6 @@
-package com.example.javaspringboot.User.Model;
+package com.example.javaspringboot.Security.Model;
 
+import com.example.javaspringboot.Security.Model.EnumRole;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

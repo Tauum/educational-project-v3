@@ -1,7 +1,7 @@
-package com.example.javaspringboot.User.Repository;
+package com.example.javaspringboot.Security.Repository;
 
-import com.example.javaspringboot.User.Model.EnumRole;
-import com.example.javaspringboot.User.Model.Role;
+import com.example.javaspringboot.Security.Model.EnumRole;
+import com.example.javaspringboot.Security.Model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

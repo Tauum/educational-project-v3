@@ -1,5 +1,6 @@
-package com.example.javaspringboot.User.Model;
+package com.example.javaspringboot.Security.Model;
 
+import com.example.javaspringboot.Security.Model.Credentials;
 import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;

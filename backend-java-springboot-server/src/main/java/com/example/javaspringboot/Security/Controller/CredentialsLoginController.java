@@ -1,7 +1,7 @@
-package com.example.javaspringboot.User.Controller;
+package com.example.javaspringboot.Security.Controller;
 
-import com.example.javaspringboot.User.Model.CredentialsLogin;
-import com.example.javaspringboot.User.Service.CredentialsLoginService;
+import com.example.javaspringboot.Security.Model.CredentialsLogin;
+import com.example.javaspringboot.Security.Service.CredentialsLoginService;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;

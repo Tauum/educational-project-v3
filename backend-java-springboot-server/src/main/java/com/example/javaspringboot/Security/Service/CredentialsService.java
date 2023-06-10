@@ -1,8 +1,11 @@
-package com.example.javaspringboot.User.Service;
+package com.example.javaspringboot.Security.Service;
 
-import com.example.javaspringboot.Security.Request.LoginRequest;
-import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Repository.CredentialsRepository;
+import com.example.javaspringboot.Security.Model.Credentials;
+import com.example.javaspringboot.Security.Model.EnumRole;
+import com.example.javaspringboot.Security.Model.Role;
+import com.example.javaspringboot.Security.Repository.CredentialsRepository;
+import com.example.javaspringboot.Security.Repository.RoleRepository;
+import com.example.javaspringboot.Security.Response.EnumResult;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,9 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CredentialsService {
   private final CredentialsRepository credentialsRepo;
+  private RoleRepository roleRepo;
 
-  public CredentialsService(CredentialsRepository credentialsRepo) {
+  public CredentialsService(CredentialsRepository credentialsRepo, RoleRepository roleRepo) {
     this.credentialsRepo = credentialsRepo;
+    this.roleRepo = roleRepo;
   }
 
   public List<Credentials> findAll() {
@@ -45,6 +50,35 @@ public class CredentialsService {
 
   public List<Credentials> findCredentialsByOriginalEmailContains (String email){
     return credentialsRepo.findByOriginalEmailContains(email);
+  }
+
+  // TODO: INCORPERATE NEW STYLE ERROR CHECKING
+  public EnumResult addRoleToUser(UUID id, String roleName){
+    Credentials foundCredentials = findCredentialsById(id);
+    Role findRole = roleRepo.findByName(EnumRole.valueOf(roleName));
+    if (foundCredentials != null && findRole != null) {
+      if (foundCredentials.getRoles().contains(findRole)) { return EnumResult.ALREADY_EXISTS; }
+      try {
+        foundCredentials.getRoles().add(findRole);
+        credentialsRepo.save(foundCredentials);
+        return EnumResult.ACCEPTED;
+      } catch (Exception e) { return EnumResult.ERROR; }
+    }
+      return EnumResult.NOT_FOUND;
+  }
+
+  public EnumResult removeRoleFromUser(UUID id, String roleName) {
+    Credentials foundCredentials = findCredentialsById(id);
+    Role findRole = roleRepo.findByName(EnumRole.valueOf(roleName));
+    if (foundCredentials != null && findRole != null) {
+      if (foundCredentials.getRoles().contains(findRole)) { return EnumResult.DOES_NOT_EXIST; }
+      try {
+        foundCredentials.getRoles().remove(findRole);
+        credentialsRepo.save(foundCredentials);
+        return EnumResult.ACCEPTED;
+      } catch (Exception e) { return EnumResult.ERROR; }
+    }
+    return EnumResult.NOT_FOUND;
   }
 
     //fix this to not be plain text and more complex

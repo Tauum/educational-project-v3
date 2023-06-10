@@ -1,9 +1,9 @@
-package com.example.javaspringboot.User.Service;
+package com.example.javaspringboot.Security.Service;
 
-import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Model.CredentialsLogin;
+import com.example.javaspringboot.Security.Model.Credentials;
+import com.example.javaspringboot.Security.Model.CredentialsLogin;
 import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.User.Repository.CredentialsLoginRepository;
+import com.example.javaspringboot.Security.Repository.CredentialsLoginRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;

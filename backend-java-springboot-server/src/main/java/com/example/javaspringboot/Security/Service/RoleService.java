@@ -1,8 +1,8 @@
-package com.example.javaspringboot.User.Service;
+package com.example.javaspringboot.Security.Service;
 
-import com.example.javaspringboot.User.Model.EnumRole;
-import com.example.javaspringboot.User.Model.Role;
-import com.example.javaspringboot.User.Repository.RoleRepository;
+import com.example.javaspringboot.Security.Model.EnumRole;
+import com.example.javaspringboot.Security.Model.Role;
+import com.example.javaspringboot.Security.Repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
 @Service

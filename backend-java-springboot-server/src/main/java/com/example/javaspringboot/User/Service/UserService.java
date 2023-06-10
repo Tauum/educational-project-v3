@@ -1,23 +1,23 @@
 package com.example.javaspringboot.User.Service;
 
-import com.example.javaspringboot.Security.Request.LoginRequest;
-import com.example.javaspringboot.User.Model.Credentials;
+import com.example.javaspringboot.Security.Model.Credentials;
+import com.example.javaspringboot.Security.Model.EnumRole;
+import com.example.javaspringboot.Security.Model.Role;
 import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.User.Model.EnumRole;
+import com.example.javaspringboot.Security.Service.CredentialsService;
+import com.example.javaspringboot.Security.Service.RoleService;
 import com.example.javaspringboot.User.Model.PersonalInformation;
 import com.example.javaspringboot.User.Model.Registration;
-import com.example.javaspringboot.User.Model.Role;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Repository.UserRepository;
-import com.example.javaspringboot.User.UserUtility;
+import com.example.javaspringboot.Utility.UserUtility;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.UUID;
 import javax.transaction.Transactional;
+import org.komamitsu.fastuuidparser.FastUuidParser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +83,10 @@ public class UserService {
     return EnumResult.ACCEPTED;
   }
 
+  public Credentials findCredentialsByCurrentEmail(String email){
+      return credentialsService.findCredentialsByCurrentEmail(email);
+  }
+
 //  public Credentials verifyCredentials(LoginRequest loginRequest) {
 //    Credentials credentials = credentialsService.findCredentialsByCurrentEmail(
 //        loginRequest.getEmail());
@@ -98,7 +102,7 @@ public class UserService {
 //  }
 
   public UserProfile findUserProfilebyMyUserDetails(UUID credentialsId) {
-//    Credentials foundCredentials = verifyCredentials()
+//    Credentials foundCredentials = verifyCredentials() // TODO: PART OF ABOVE
     User foundUser = userRepo.findByCredentials_Id(credentialsId);
     if(foundUser == null) return null;
     UserProfile userProfile = new UserProfile();
@@ -238,6 +242,14 @@ public class UserService {
         }
         return null;
     }
+
+  public EnumResult addRoleToUser(String id, String roleName) {
+      return credentialsService.addRoleToUser(FastUuidParser.fromString(id), roleName);
+  }
+
+  public EnumResult removeRoleFromUser(String id, String roleName) {
+    return credentialsService.removeRoleFromUser(FastUuidParser.fromString(id), roleName);
+  }
 
   //fix this to not be plain text and more complex
 //    public Boolean resetUserPassword(String email) {

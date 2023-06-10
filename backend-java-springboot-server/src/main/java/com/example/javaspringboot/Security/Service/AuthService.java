@@ -1,16 +1,16 @@
-package com.example.javaspringboot.User.Service;
+package com.example.javaspringboot.Security.Service;
 
+import com.example.javaspringboot.Security.Model.MyUserDetails;
+import com.example.javaspringboot.Security.Repository.RoleRepository;
 import com.example.javaspringboot.Security.Request.JwtUtils;
+import com.example.javaspringboot.Security.Request.LoginRequest;
+import com.example.javaspringboot.Security.Response.EnumResult;
 import com.example.javaspringboot.Security.Response.LoginResponse;
 import com.example.javaspringboot.Security.Response.RegisterResponse;
-import com.example.javaspringboot.Security.Response.EnumResult;
-import com.example.javaspringboot.Security.Request.LoginRequest;
-import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Model.MyUserDetails;
 import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
-import com.example.javaspringboot.User.Repository.RoleRepository;
+import com.example.javaspringboot.User.Service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -60,6 +60,7 @@ public class AuthService {
     return filterLogin(myUserDetails);
   }
 
+  // TODO : PREVENT 200 WHEN ALREADY LOGGED OUT
   public LoginResponse whoAmI(HttpServletRequest request){
 
     String jwt = jwtUtils.getJwtFromCookies(request);
@@ -67,13 +68,14 @@ public class AuthService {
       MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       return filterLogin(userDetails);
     }
-    return null;
+    return logout();
   }
 
   public RegisterResponse register(@RequestBody Registration attempt){
     return filterRegister(userService.addUser(attempt));
   }
 
+  // TODO : PREVENT 200 WHEN ALREADY LOGGED OUT
   public LoginResponse logout() {
     SecurityContextHolder.clearContext();
     return new LoginResponse(

@@ -1,7 +1,7 @@
-package com.example.javaspringboot.User.Service;
+package com.example.javaspringboot.Security.Service;
 
-import com.example.javaspringboot.User.Model.Credentials;
-import com.example.javaspringboot.User.Model.MyUserDetails;
+import com.example.javaspringboot.Security.Model.Credentials;
+import com.example.javaspringboot.Security.Model.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +18,7 @@ public class MyUserDetailsService implements UserDetailsService {
         this.credentialsService = credentialsService;
     }
 
+    // TODO : "UserDetailsService returned null, which is an interface contract violation", WHEN NO PROFILE
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Credentials credentials = credentialsService.findCredentialsByCurrentEmail(email);

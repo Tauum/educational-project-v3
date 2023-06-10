@@ -1,5 +1,6 @@
 package com.example.javaspringboot.User.Model;
 
+import com.example.javaspringboot.Security.Model.Credentials;
 import java.time.LocalDateTime;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
