@@ -13,6 +13,7 @@ public enum EnumResult {
   NOT_LOGGED_IN,
 
   LOGOUT,
+  DELETED,
 
   NONE,
   ACCEPTED,
@@ -22,5 +23,7 @@ public enum EnumResult {
   ALREADY_EXISTS,
   DOES_NOT_EXIST,
   UNDETERMINED,
-  REMOVE
+  REMOVE,
+  INVALID_UUID,
+  BAD_REQUEST
 }

@@ -8,10 +8,13 @@ import com.example.javaspringboot.User.Records.NamesRecord;
 import com.example.javaspringboot.User.Records.StringRecord;
 import com.example.javaspringboot.User.Records.UUIDRecord;
 import com.example.javaspringboot.User.Service.PersonalInformationService;
+import com.example.javaspringboot.Utility.Response.ResultResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,93 +37,167 @@ public class PersonalInformationController {
 
   @GetMapping()
   public ResponseEntity<?> findAll() {
-//
-//    ResultResponse resultResponse = new ResultResponse();
-//
-//    resultResponse = resultResponse.filterListResults(
-//        Collections.singletonList(personalInformationService.findAll()));
-//
-//    return ResponseEntity.status(resultResponse.getHttpCode())
-//        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
-//        .body(resultResponse);
 
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findAll());
+    ResultResponse resultResponse = new ResultResponse();
+    resultResponse = resultResponse.filterResults(personalInformationService.findAll());
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
   @GetMapping("/id")
   public ResponseEntity<?> findById(@RequestBody UUIDRecord json){
-//    ResultResponse resultResponse = new ResultResponse();
-//    resultResponse = resultResponse.filterListResults(
-//        Collections.singletonList((personalInformationService.findById(json.id()))));
 
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findById(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResult(
+        personalInformationService.findById(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
   @GetMapping("/institutionId")
   public ResponseEntity<?> findByInstitutionId(@RequestBody StringRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByInstitutionalId(json.parameter()));
+
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByInstitutionalId(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/names")
   public ResponseEntity<?> findByNames(@RequestBody NamesRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByNames(json.firstName(), json.lastName()));
+
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByNames(json.firstName(), json.lastName()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
   @GetMapping("/dateOfBirth")
   public ResponseEntity<?> findByDateOfBirth(@RequestBody LocalDateRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByDateOfBirth(json.parameter()));
+
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByDateOfBirth(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
+
   @GetMapping("/dateOfBirth/before")
   public ResponseEntity<?> findByDateOfBirthBefore(@RequestBody LocalDateRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByDateOfBirthBefore(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByDateOfBirthBefore(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/dateOfBirth/after")
   public ResponseEntity<?> findByDateOfBirthAfter(@RequestBody LocalDateRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByDateOfBirthAfter(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByDateOfBirthAfter(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/dateOfBirth/between")
   public ResponseEntity<?> findByDateOfBirthBetween(@RequestBody BetweenLocalDatesRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByDateOfBirthBetween(json.start(), json.end()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByDateOfBirthBetween(json.start(), json.end()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/avatar")
   public ResponseEntity<?> findByAvatar(@RequestBody IntRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByAvatar(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByAvatar(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/avatarUrl")
   public ResponseEntity<?> findByAvatarUrl(@RequestBody StringRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByAvatarUrl(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByAvatarUrl(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
   @GetMapping("/language")
   public ResponseEntity<?> findByLanguage(@RequestBody StringRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findByLanguage(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findByLanguage(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
   @GetMapping("/countryCode")
   public ResponseEntity<?> findByCountryCode(@RequestBody StringRecord json){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.findBycountryCode(json.parameter()));
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResults(
+        personalInformationService.findBycountryCode(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
   @PutMapping("/update")
-  public ResponseEntity<?> findByCountryCode(@RequestBody PersonalInformation personalInformation){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.update(personalInformation));
+  public ResponseEntity<?> update(@RequestBody PersonalInformation personalInformation){
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResult(
+        personalInformationService.update(personalInformation));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
-  @PutMapping("/delete")
-  public ResponseEntity<?> findByCountryCode(@RequestBody UUIDRecord uuidRecord){
-    return ResponseEntity.status(200)
-        .body(personalInformationService.delete(uuidRecord.parameter()));
+  @DeleteMapping("/delete")
+  public ResponseEntity<?> delete(@RequestBody UUIDRecord json){
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResult(
+        personalInformationService.delete(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
   }
 
 }

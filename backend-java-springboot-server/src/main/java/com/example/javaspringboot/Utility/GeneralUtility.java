@@ -1,20 +1,76 @@
 package com.example.javaspringboot.Utility;
 
+import com.example.javaspringboot.Utility.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.ResultResponse;
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import org.komamitsu.fastuuidparser.FastUuidParser;
 
 public class GeneralUtility {
-
+  public static boolean isNullOrWhitespace(String str) {
+    return str == null || str.trim().isEmpty();
+  }
+  public static boolean isValidDateTime(String dateTimeString) {
+    if (isNullOrWhitespace(dateTimeString)) return false;
+    try {
+      DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+      LocalDateTime.parse(dateTimeString, formatter);
+      return true;
+    } catch (DateTimeParseException e) { return false; }
+  }
+  public static boolean isValidInt(int intValue){
+    try{
+      if (!isNullOrWhitespace(String.valueOf(intValue))) return false;
+      int num = Integer.parseInt(String.valueOf(intValue));
+      return true;
+      // is an integer!
+    } catch (NumberFormatException e){ return false;}
+  }
+  public static LocalDate convertStringToLocalDate(String localDateString){
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
+    return LocalDate.parse(localDateString, formatter);
+  }
+  public static boolean isString(Object obj) {
+    return obj instanceof String;
+  }
+  public static boolean uuidStringValidityCheck(String uuid2){
+    try {
+      if (isNullOrWhitespace(uuid2)) return false;
+      String standardUuidString = uuid2.replace("uuid2-", "");
+       FastUuidParser.fromString(standardUuidString);
+      // UUID parsing successful
+    } catch (Exception e) {
+      // Handle invalid UUID format
+      return false;
+    }
+    return true;
+  }
+  public static boolean uuidValidityCheck(UUID uuid){
+    try {
+      if(uuid == null) return false;
+      String standardUuidString = uuid.toString().replace("uuid2-", "");
+      FastUuidParser.fromString(standardUuidString);
+      // UUID parsing successful
+    } catch (Exception e) {
+      // Handle invalid UUID format
+      return false;
+    }
+    return true;
+  }
   public static UUID uuid2StringToUuid(String uuid2){
     String standardUuidString = uuid2.replace("uuid2-", "");
 
     UUID uuid;
     try {
-      return UUID.fromString(standardUuidString);
+      return FastUuidParser.fromString(standardUuidString);
       // UUID parsing successful
     } catch (IllegalArgumentException e) {
       // Handle invalid UUID format
@@ -23,29 +79,19 @@ public class GeneralUtility {
     return null;
   }
 
-//  public static EnumResult filterRequestBody(String id){
-//    if (id != null && !id.isBlank())
-//  }
-
-  public static boolean isNullOrWhitespace(String str) {
-    return str == null || str.trim().isEmpty();
+  public static Map.Entry<EnumResult, List> mapResultsResponse(EnumResult enumResult,List<Object> objects){
+    return new AbstractMap.SimpleEntry<>(enumResult, objects);
+  }
+  public static Map.Entry<EnumResult, Object> mapResultResponse(EnumResult enumResult, Object object){
+    return new AbstractMap.SimpleEntry<>(enumResult, object);
+  }
+  public static Map.Entry<EnumResult, Object> mapResultResponse(EnumResult enumResult){
+    return new AbstractMap.SimpleEntry<>(enumResult, null);
+  }
+  public static Map.Entry<EnumResult, List> mapResultsResponse(EnumResult enumResult){
+    return new AbstractMap.SimpleEntry<>(enumResult, new ArrayList());
   }
 
-  public static boolean isValidDateTime(String dateTimeString) {
-    if (isNullOrWhitespace(dateTimeString)) return false;
-    try {
-      DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
-      LocalDateTime.parse(dateTimeString, formatter);
-      return true;
-    } catch (DateTimeParseException e) {
-      return false;
-    }
-  }
-
-  public static LocalDate convertStringToLocalDate(String localDateString){
-    DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
-    return LocalDate.parse(localDateString, formatter);
-  }
 
   public static boolean hasNullProperties(Object obj) {
     // Base case: If the object is null, return true
@@ -90,7 +136,5 @@ public class GeneralUtility {
     return false;
   }
 
-  public static boolean isString(Object obj) {
-    return obj instanceof String;
-  }
+
 }
