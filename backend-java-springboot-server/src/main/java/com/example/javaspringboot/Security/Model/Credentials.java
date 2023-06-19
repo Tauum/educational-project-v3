@@ -1,6 +1,7 @@
 package com.example.javaspringboot.Security.Model;
 
 import com.example.javaspringboot.Utility.UserUtility;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -35,13 +36,13 @@ public class Credentials implements Serializable {
   private UUID id;
   @Column(unique = true, nullable = false)
   private String originalEmail;
-
   @Column(unique = true, nullable = false)
   private String currentEmail;
   @Column(unique = true, nullable = false)
   private String password;
 
   @ManyToMany(fetch = FetchType.LAZY)
+  @JsonSerialize // TODO: check if nessecary
   @JoinTable(name = "Credentials_roles",
       joinColumns = @JoinColumn(name = "credentials_id"),
       inverseJoinColumns = @JoinColumn(name = "role_id"))

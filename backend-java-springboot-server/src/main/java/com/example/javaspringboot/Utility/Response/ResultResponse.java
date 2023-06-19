@@ -20,12 +20,10 @@ public class ResultResponse {
     this.enumResult = enumResult;
     this.httpCode = httpCode;
   }
-
   public ResultResponse(Object result, EnumResult enumResult) {
     this.result = result;
     this.enumResult = enumResult;
   }
-
   public ResultResponse( List<Object> results, EnumResult enumResult) {
     this.results = results;
     this.enumResult = enumResult;
@@ -52,11 +50,13 @@ public class ResultResponse {
         else return new ResultResponse(EnumResult.ACCEPTED, 200);
       case NOT_FOUND:
       case DOES_NOT_EXIST:
-        return new ResultResponse(null, key, 200);
+        return new ResultResponse(null, key, 200); //TODO: pass value
       case ERROR:
-        return new ResultResponse(null, EnumResult.ERROR, 500);
+        return new ResultResponse(null, EnumResult.ERROR, 500); //TODO: pass value
       case BAD_REQUEST:
-        return new ResultResponse(null, EnumResult.BAD_REQUEST, 400);
+        return new ResultResponse(null, EnumResult.BAD_REQUEST, 400); //TODO: pass value
+      case DUPLICATE:
+        return new ResultResponse(null, EnumResult.DUPLICATE, 409); //TODO: pass value
       default:
         if (!isNullOrWhitespace(value.toString()))
           return new ResultResponse(null, key, 200);
@@ -65,9 +65,9 @@ public class ResultResponse {
     return new ResultResponse(null, EnumResult.UNKNOWN, 500);
   }
 
-  public ResultResponse filterResults(Map.Entry<EnumResult, List> result) {
-    EnumResult key = result.getKey();
-    Object value = result.getValue();
+  public ResultResponse filterResults(Map.Entry<EnumResult, List> results) {
+    EnumResult key = results.getKey();
+    Object value = results.getValue();
     switch (key) {
       case ACCEPTED:
         if (value != null)

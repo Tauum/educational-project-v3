@@ -23,7 +23,7 @@ public interface PersonalInformationRepository extends JpaRepository<PersonalInf
   List<PersonalInformation> getByLanguage(String language);
   List<PersonalInformation> getByFirstNameContainsIgnoreCase(String firstName);
   List<PersonalInformation> getByLastNameContainsIgnoreCase(String lastName);
-  List<PersonalInformation> getByFirstNameIgnoreCaseContainsAndLastNameIgnoreCaseContains(String firstName, String lastName);
+  List<PersonalInformation> getByFirstNameContainsIgnoreCaseAndLastNameContainsIgnoreCase(String firstName, String lastName);
 
   void deleteById(UUID id);
 

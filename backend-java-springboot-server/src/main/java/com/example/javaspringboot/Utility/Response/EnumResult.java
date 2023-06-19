@@ -11,7 +11,7 @@ public enum EnumResult {
   UNKNOWN,
   NO_ID_PASSED,
   NOT_LOGGED_IN,
-
+  DUPLICATE,
   LOGOUT,
   DELETED,
 

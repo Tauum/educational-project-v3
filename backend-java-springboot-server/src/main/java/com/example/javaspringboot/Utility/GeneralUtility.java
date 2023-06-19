@@ -34,6 +34,15 @@ public class GeneralUtility {
       // is an integer!
     } catch (NumberFormatException e){ return false;}
   }
+
+  public static boolean isValidBoolean(Boolean booleanValue){
+    try {
+      if (isNullOrWhitespace(booleanValue.toString())) return false;
+      return true;
+    }
+    catch(Exception e) { }
+    return false;
+  }
   public static LocalDate convertStringToLocalDate(String localDateString){
     DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
     return LocalDate.parse(localDateString, formatter);
@@ -135,6 +144,5 @@ public class GeneralUtility {
     // If all properties are non-null, return false
     return false;
   }
-
 
 }

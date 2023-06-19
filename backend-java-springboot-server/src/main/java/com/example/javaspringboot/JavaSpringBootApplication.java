@@ -39,8 +39,13 @@ public class JavaSpringBootApplication {
                 if (roleRepository.findByName(EnumRole.ROLE_ADMIN) == null){ roleRepository.save(new Role(EnumRole.ROLE_ADMIN)) ; }
                 if (roleRepository.findByName(EnumRole.ROLE_SYSTEM) == null){ roleRepository.save(new Role(EnumRole.ROLE_SYSTEM)) ; }
             }
+
             System.out.println(
-                "\n*****************************\n"+ "TESTMODE IS: " + testMode + "\n*****************************\n");
+                "\n*****************************\n"+
+                    "TESTMODE IS: " +
+                    testMode +
+                    "\n*****************************\n");
+
             if(testMode){
                 try{
                     String systemEmail = "system@test.com";
@@ -51,10 +56,17 @@ public class JavaSpringBootApplication {
                         true);
 
                     EnumResult userResult = testService.addUser(system);
-                    System.out.println("\n*****************************\n" + systemEmail + " - " + userResult + "\n*****************************\n");
+
+                    System.out.println(
+                        "\n*****************************\n" +
+                        systemEmail +
+                            " - " +
+                        userResult +
+                        "\n*****************************\n");
+
                     if (userResult == EnumResult.ACCEPTED){
-                        Credentials credentials = testService.getCredentialsByEmail(systemEmail);
-                        testService.addRoleToUser(credentials.getId().toString(),EnumRole.ROLE_SYSTEM.toString() );
+                        Credentials credentials = testService.getCredentialsByCurrentEmail(systemEmail);
+                        testService.addRoleToCredentials(credentials.getId().toString(),EnumRole.ROLE_SYSTEM.toString() );
                     }
                 }
                 catch (Error e){ System.out.println(e); }

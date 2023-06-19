@@ -7,12 +7,17 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CredentialsRepository extends JpaRepository<Credentials, UUID> {
-  Optional<Credentials> findByCurrentEmail(String email);
-  Optional<Credentials> findByOriginalEmail(String email);
-  List<Credentials> findByCurrentEmailContains(String email);
-  List<Credentials> findByOriginalEmailContains(String email);
+  Optional<Credentials> findByCurrentEmailIgnoreCase(String currentEmail);
+  Optional<Credentials> findByOriginalEmailIgnoreCase(String originalEmail);
+  List<Credentials> findByCurrentEmailContainsIgnoreCase(String currentEmail);
+  List<Credentials> findByOriginalEmailContainsIgnoreCase(String originalEmail);
+  List<Credentials> findByCurrentEmailContainsIgnoreCaseAndOriginalEmailContainsIgnoreCase(String currentEmail, String originalEmail);
 
   Optional<Credentials> findById(UUID id);
+
+  List<Credentials> findByEnabled(boolean enabled);
+  List<Credentials> findByExpired(boolean expired);
+  List<Credentials> findByExpiredAndEnabled(boolean expired, boolean enabled);
 
   void deleteById(UUID id);
 

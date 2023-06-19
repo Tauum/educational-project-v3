@@ -1,14 +1,8 @@
 package com.example.javaspringboot.User.Controller;
 
-import com.example.javaspringboot.Utility.Response.EnumResult;
-import com.example.javaspringboot.User.Records.RoleCredentialsRecord;
 import com.example.javaspringboot.User.Service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -76,16 +70,21 @@ public class UserController {
 //        if (attempt != null){ return new ResponseEntity<>(attempt, HttpStatus.OK); }
 //        return new ResponseEntity<>(attempt, HttpStatus.NOT_FOUND);
 //    }
-//
-    @PostMapping("/role/add")
-    public ResponseEntity<EnumResult> addRoleToUserByIds(@RequestBody RoleCredentialsRecord json) {
-        return new ResponseEntity<>(userService.addRoleToUser(json.id(), json.role()), HttpStatus.OK);
-    }
 
-    @PostMapping("/role/remove")
-    public ResponseEntity<EnumResult> removeRoleFromUserByIds(@RequestBody RoleCredentialsRecord json) {
-        return new ResponseEntity<>(userService.removeRoleFromUser(json.id(), json.role()), HttpStatus.OK);
-    }
+
+
+
+//    @PostMapping("/role/add")
+//    public ResponseEntity<EnumResult> addRoleToUserByIds(@RequestBody RoleCredentialsRecord json) {
+//        return new ResponseEntity<>(userService.addRoleToUser(json.id(), json.role()), HttpStatus.OK);
+//    }
+//
+//    @PostMapping("/role/remove")
+//    public ResponseEntity<EnumResult> removeRoleFromUserByIds(@RequestBody RoleCredentialsRecord json) {
+//        return new ResponseEntity<>(userService.removeRoleFromUser(json.id(), json.role()), HttpStatus.OK);
+//    }
+
+
 
 
 //

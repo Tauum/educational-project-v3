@@ -3,7 +3,6 @@ package com.example.javaspringboot.User.Service;
 import com.example.javaspringboot.Security.Model.Credentials;
 import com.example.javaspringboot.Security.Model.EnumRole;
 import com.example.javaspringboot.Security.Model.Role;
-import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Security.Service.CredentialsService;
 import com.example.javaspringboot.Security.Service.RoleService;
 import com.example.javaspringboot.User.Model.PersonalInformation;
@@ -11,13 +10,12 @@ import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Repository.UserRepository;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Utility.UserUtility;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
-import org.komamitsu.fastuuidparser.FastUuidParser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -216,13 +214,14 @@ public class UserService {
         return null;
     }
 
-  public EnumResult addRoleToUser(String id, String roleName) {
-      return credentialsService.addRoleToUser(FastUuidParser.fromString(id), roleName);
-  }
+//  public EnumResult addRoleToUser(String id, String roleName) {
+//      return credentialsService.addRole(FastUuidParser.fromString(id), roleName);
+//  }
+//
+//  public EnumResult removeRoleFromUser(String id, String roleName) {
+//    return credentialsService.de(FastUuidParser.fromString(id), roleName);
+//  }
 
-  public EnumResult removeRoleFromUser(String id, String roleName) {
-    return credentialsService.removeRoleFromUser(FastUuidParser.fromString(id), roleName);
-  }
 
   //fix this to not be plain text and more complex
 //    public Boolean resetUserPassword(String email) {

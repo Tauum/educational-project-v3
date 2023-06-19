@@ -52,11 +52,11 @@ public class PersonalInformationService {
   public Entry<EnumResult, List> findByNames(String firstName, String lastName) {
     if (isNullOrWhitespace(firstName) && isNullOrWhitespace(lastName)) return mapResultsResponse(EnumResult.BAD_REQUEST);
       List<PersonalInformation> find = null;
-      if (!isNullOrWhitespace(firstName) && !isNullOrWhitespace(lastName)) find = personalInformaitonRepo.getByFirstNameIgnoreCaseContainsAndLastNameIgnoreCaseContains(firstName, lastName);
+      if (!isNullOrWhitespace(firstName) && !isNullOrWhitespace(lastName)) find = personalInformaitonRepo.getByFirstNameContainsIgnoreCaseAndLastNameContainsIgnoreCase(firstName, lastName);
       else if (isNullOrWhitespace(firstName) && !isNullOrWhitespace(lastName)) find = personalInformaitonRepo.getByLastNameContainsIgnoreCase(lastName);
       else if (!isNullOrWhitespace(firstName) && isNullOrWhitespace(lastName)) find = personalInformaitonRepo.getByFirstNameContainsIgnoreCase(firstName);
       if (find != null) {
-        if (find.size() == 0) return mapResultsResponse(EnumResult.NOT_FOUND);
+        if (find.isEmpty()) return mapResultsResponse(EnumResult.NOT_FOUND);
         else return mapResultsResponse(EnumResult.ACCEPTED, List.of(find));
       }
     return mapResultsResponse(EnumResult.ERROR);
@@ -157,7 +157,7 @@ public class PersonalInformationService {
           return mapResultResponse(EnumResult.ACCEPTED, null);
         }
       }
-      catch (Error e){
+      catch (Exception e){
         System.out.println(e);
         return mapResultResponse(EnumResult.ERROR, null);
       }
