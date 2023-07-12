@@ -12,4 +12,5 @@ public class Registration {
   private String password;
   private LocalDate dateOfBirth;
   private boolean termsAndConditions = false;
+
 }

@@ -1,10 +1,16 @@
 package com.example.javaspringboot.Security.Model;
 
+import static com.example.javaspringboot.Utility.GeneralUtility.isNullOrWhitespace;
+
+import com.example.javaspringboot.User.Model.PersonalInformation;
+import com.example.javaspringboot.Utility.GeneralUtility;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.Utility.UserUtility;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -17,6 +23,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import jdk.jshell.execution.Util;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -87,23 +94,10 @@ public class Credentials implements Serializable {
     this.currentEmail = currentEmail;
   }
 
-  public Credentials updateEmail(String newEmail, Long version){
-    if (UserUtility.validateEmail(newEmail)){
-      if (this.getOriginalEmail() == null ||
-          this.getOriginalEmail().isEmpty())
-        this.setOriginalEmail(newEmail);
-
-      this.setCurrentEmail(newEmail);
-      return this;
-    }
-    return null;
-  }
-
-  public Credentials updatePassword(String newPassword, Long version){
-    if (UserUtility.validatePassword(newPassword)){
-      this.setPassword(newPassword);
-      return this;
-    }
-    return null;
+  public void update(Credentials updatedObject) {
+    if (!isNullOrWhitespace(updatedObject.getOriginalEmail())) this.setOriginalEmail(updatedObject.getOriginalEmail());
+    if (!isNullOrWhitespace(updatedObject.getCurrentEmail())) this.setCurrentEmail(updatedObject.getCurrentEmail());
+    if (GeneralUtility.isValidBoolean(expired)) this.setExpired(updatedObject.isExpired());
+    if (GeneralUtility.isValidBoolean(enabled)) this.setEnabled(updatedObject.isEnabled());
   }
 }

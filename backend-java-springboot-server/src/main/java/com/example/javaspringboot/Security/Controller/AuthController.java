@@ -54,7 +54,7 @@ public class AuthController {
             return  ResponseEntity.status(loginResponse.getHttpCode())
                 .header(HttpHeaders.SET_COOKIE, loginResponse.getResponseCookie().toString())
                 .header(HttpHeaders.WARNING,loginResponse.getEnumResult().toString())
-                .body(EnumResult.ACCEPTED.toString() + "" + EnumResult.NOT_LOGGED_IN.toString());
+                .body(EnumResult.ACCEPTED + "" + EnumResult.NOT_LOGGED_IN);
         }
 
             return  ResponseEntity.status(loginResponse.getHttpCode())

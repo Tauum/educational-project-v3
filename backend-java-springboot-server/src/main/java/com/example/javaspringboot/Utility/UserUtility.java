@@ -1,7 +1,7 @@
 package com.example.javaspringboot.Utility;
 
-import com.example.javaspringboot.Utility.Response.EnumResult;
 import com.example.javaspringboot.User.Model.Registration;
+import com.example.javaspringboot.Utility.Response.EnumResult;
 import java.time.LocalDate;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -19,6 +19,14 @@ public class UserUtility {
     if (!registration.isTermsAndConditions())
       return EnumResult.TERMS_REQUIREMENTS_NOT_MET;
 
+    return EnumResult.ACCEPTED;
+  }
+
+  public static EnumResult validateCredentialsRegistration(Registration registration) {
+    if (Boolean.FALSE.equals(validateEmail(registration.getEmail())))
+      return EnumResult.EMAIL_REQUIREMENTS_NOT_MET;
+    if (Boolean.FALSE.equals(validatePassword(registration.getPassword())))
+      return EnumResult.PASSWORD_REQUIREMENTS_NOT_MET;
     return EnumResult.ACCEPTED;
   }
 
@@ -54,4 +62,6 @@ public class UserUtility {
     if (!passedVersion.equals(storedVersion)) return false;
     return true;
   }
+
+
 }

@@ -16,7 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,21 +23,17 @@ public class UserService {
 
     private CredentialsService credentialsService;
     private final UserRepository userRepo;
-    private RoleService roleService;
-    private final PasswordEncoder passwordEncoder;
 //    private ModuleService moduleService;
 //
 //    private SubmittedShifterService ssService;
 //    private SubmittedQuizService sQService;
 //    private SubmittedHangmanService sHService;
 //
-    public UserService(UserRepository userRepo, RoleService roleService, PasswordEncoder passwordEncoder, CredentialsService credentialsService
+    public UserService(UserRepository userRepo, CredentialsService credentialsService
 //                      ,@Lazy ModuleService moduleService,
 //                       SubmittedShifterService ssService, SubmittedQuizService sQService, SubmittedHangmanService sHService
      ){
         this.userRepo = userRepo;
-        this.roleService = roleService;
-        this.passwordEncoder = passwordEncoder;
         this.credentialsService = credentialsService;
 //        this.moduleService = moduleService;
 //        this.ssService = ssService;
@@ -53,28 +48,16 @@ public class UserService {
    if (validation != EnumResult.ACCEPTED) return validation;
    Credentials existingCredentials = credentialsService.findCredentialsByCurrentEmail(registration.getEmail());
 
-    if (existingCredentials != null) {
-      return EnumResult.CREDENTIALS_EXIST;
-    }
+    if (existingCredentials != null) return EnumResult.DUPLICATE;
 
-    Role undefined = roleService.findRoleByName(EnumRole.ROLE_UNDEFINED);
-    HashSet roles = new HashSet<Role>();
-    roles.add(undefined);
-
-    registration.setPassword(
-        passwordEncoder.encode(registration.getPassword()));
+    var createdCredentials = credentialsService.create(registration);
+    if(createdCredentials.getKey() != EnumResult.ACCEPTED || createdCredentials.getValue() == null) return createdCredentials.getKey();
 
     User user = new User(
-
-        new Credentials(
-            registration.getEmail(),
-            registration.getPassword(),
-            roles),
-
+        (Credentials) createdCredentials.getValue(),
         new PersonalInformation(
             registration.getDateOfBirth()),
           registration.isTermsAndConditions());
-
 
     userRepo.save(user);
     return EnumResult.ACCEPTED;

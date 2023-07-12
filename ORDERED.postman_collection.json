@@ -464,623 +464,108 @@
 					"name": "Undefined",
 					"item": [
 						{
-							"name": "Setup",
-							"item": [
-								{
-									"name": "login setup undefined register",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"undefined@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signup"
-											]
+							"name": "login setup undefined register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"undefined@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8081/Auth/signup",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"Auth",
+										"signup"
+									]
 								}
-							]
+							},
+							"response": []
 						},
 						{
-							"name": "Work",
-							"item": [
-								{
-									"name": "undefined",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"undefined@login.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signin"
-											]
+							"name": "undefined",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"undefined@login.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
 										}
-									},
-									"response": []
+									}
 								},
-								{
-									"name": "whoAmI",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/whoami",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"whoami"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sign out",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signout"
-											]
-										}
-									},
-									"response": []
+								"url": {
+									"raw": "https://localhost:8081/Auth/signin",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"Auth",
+										"signin"
+									]
 								}
-							]
-						}
-					]
-				},
-				{
-					"name": "Staff",
-					"item": [
-						{
-							"name": "Setup",
-							"item": [
-								{
-									"name": "login setup staff register",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"staff@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signup"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "login setup staff roles",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept-Charset",
-												"value": "",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"159e26d0-031f-455e-aa43-8499470453bf\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Users/role/add",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Users",
-												"role",
-												"add"
-											]
-										}
-									},
-									"response": []
-								}
-							]
+							},
+							"response": []
 						},
 						{
-							"name": "Work",
-							"item": [
-								{
-									"name": "staff",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"staff@login.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signin"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "whoAmI",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/whoami",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"whoami"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sign out",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signout"
-											]
-										}
-									},
-									"response": []
+							"name": "whoAmI",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8081/Auth/whoami",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"Auth",
+										"whoami"
+									]
 								}
-							]
-						}
-					]
-				},
-				{
-					"name": "Admin",
-					"item": [
-						{
-							"name": "Setup",
-							"item": [
-								{
-									"name": "login setup admin register",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"admin@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signup"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "login setup admin roles",
-									"request": {
-										"method": "POST",
-										"header": [
-											{
-												"key": "Accept-Charset",
-												"value": "",
-												"type": "text"
-											}
-										],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"159e26d0-031f-455e-aa43-8499470453bf\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Users/role/add",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Users",
-												"role",
-												"add"
-											]
-										}
-									},
-									"response": []
-								}
-							]
+							},
+							"response": []
 						},
 						{
-							"name": "Work",
-							"item": [
-								{
-									"name": "admin",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"admin@login.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signin"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "whoAmI",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/whoami",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"whoami"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sign out",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signout"
-											]
-										}
-									},
-									"response": []
+							"name": "sign out",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:8081/Auth/signout",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"Auth",
+										"signout"
+									]
 								}
-							]
-						}
-					]
-				},
-				{
-					"name": "All",
-					"item": [
-						{
-							"name": "Setup",
-							"item": [
-								{
-									"name": "login setup all register",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"all@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signup"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "login setup all roles",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"\",\r\n    \"version\":\"\",\r\n    \"credentials\":{\r\n        \"id\":\"\",\r\n        \"role\":\"\"\r\n    }\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/User/role/add",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"User",
-												"role",
-												"add"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Work",
-							"item": [
-								{
-									"name": "all",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"all@login.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signin"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "whoAmI",
-									"request": {
-										"method": "GET",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/whoami",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"whoami"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sign out",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signout"
-											]
-										}
-									},
-									"response": []
-								}
-							]
+							},
+							"response": []
 						}
 					]
 				},
 				{
 					"name": "System",
 					"item": [
-						{
-							"name": "Setup",
-							"item": [
-								{
-									"name": "login setup register system",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"system@login.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signup"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "login setup roles system",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"\",\r\n    \"version\":\"\",\r\n    \"credentials\":{\r\n        \"id\":\"\",\r\n        \"role\":\"\"\r\n    }\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/User/role/add",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"User",
-												"role",
-												"add"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
 						{
 							"name": "Work",
 							"item": [
@@ -1160,10 +645,6 @@
 				{
 					"name": "Fail",
 					"item": [
-						{
-							"name": "Setup",
-							"item": []
-						},
 						{
 							"name": "login - no profile",
 							"request": {
@@ -1419,12 +900,238 @@
 					"name": "Create",
 					"item": [
 						{
-							"name": "Work",
-							"item": []
+							"name": "work",
+							"item": [
+								{
+									"name": "create credentials",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"credentials@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						},
 						{
 							"name": "Fail",
-							"item": []
+							"item": [
+								{
+									"name": "taken email",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"credentials@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "incorrect email",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"incorrect@Email\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "empty email",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "empty password",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"pwd@empty.com\",\r\n    \"password\":\"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "password under 8 characters",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"pwdunder@8char.com\",\r\n    \"password\":\"abcd\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "missing email",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "missing password",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\":\"password@empty.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -1432,12 +1139,1042 @@
 					"name": "Read",
 					"item": [
 						{
-							"name": "Work",
-							"item": []
+							"name": "all",
+							"item": [
+								{
+									"name": "find all",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://localhost:8081/Credentials",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						},
 						{
-							"name": "Fail",
-							"item": []
+							"name": "id",
+							"item": [
+								{
+									"name": "Work",
+									"item": [
+										{
+											"name": "find by id",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"parameter\":\"bd9b5df4-b6a5-4e90-bfb2-0139af416070\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/id",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"id"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"parameter\":\"6398d024-c8aa-446e-9071-ab2d5ff35zzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/id",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"id"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "invalid uuid",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"parameter\":\"ca76401b-946e-4a80-9d26-46e4ae3\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/id",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"id"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"parameter\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/id",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"id"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "missing parameter",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/id",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"id"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "emails",
+							"item": [
+								{
+									"name": "Work",
+									"item": [
+										{
+											"name": "find by emails",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"system@test.com\",\r\n    \"originalEmail\":\"system@test.com\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by currentEmail",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"system@test.com\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by originalEmail",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"originalEmail\":\"system@test.com\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"zzzzz\",\r\n    \"originalEmail\":\"zzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "missing parameter",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"currentEmail\":\"\",\r\n   \"originalEmail\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail currentEmail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"zzzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"currentEmails\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail originalEmail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"originalEmail\":\"zzzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"originalEmail\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "status",
+							"item": [
+								{
+									"name": "Work",
+									"item": [
+										{
+											"name": "find by status",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"enabled\":\"true\",\r\n    \"expired\":\"false\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/status",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"status"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by status enabled true",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"enabled\":\"false\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/status",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"status"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by status enabled false",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"enabled\":\"true\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/status",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"status"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by status expired true",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"expired\":\"true\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/status",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"status"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "find by status expired false",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"expired\":\"false\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/status",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"status"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"zzzzz\",\r\n    \"originalEmail\":\"zzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "missing parameter",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"currentEmail\":\"\",\r\n   \"originalEmail\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail currentEmail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"currentEmail\":\"zzzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"currentEmails\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Fail originalEmail",
+									"item": [
+										{
+											"name": "incorrect value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"originalEmail\":\"zzzzz\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "empty value",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n   \"originalEmail\":\"\"\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "https://localhost:8081/Credentials/emails",
+													"protocol": "https",
+													"host": [
+														"localhost"
+													],
+													"port": "8081",
+													"path": [
+														"Credentials",
+														"emails"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define the URLs to be tested\r",
+											"const url1 = \"https://www.alphabet.com\";\r",
+											"const url2 = \"https://www.google.com\";\r",
+											"\r",
+											"// Make the requests and check the HTTP status\r",
+											"pm.sendRequest(url1, function (err, res) {\r",
+											"    pm.test(\"Status check for \" + url1, function () {\r",
+											"        pm.expect(err).to.be.null;\r",
+											"        pm.expect(res).to.have.property('code', 200);\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"pm.sendRequest(url2, function (err, res) {\r",
+											"    pm.test(\"Status check for \" + url2, function () {\r",
+											"        pm.expect(err).to.be.null;\r",
+											"        pm.expect(res).to.have.property('code', 200);\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current_url}}",
+									"host": [
+										"{{current_url}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "automated test for read",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Define the URLs to be tested\r",
+											"const url1 = \"https://localhost:8081/Credentials\";\r",
+											"pm.collectionVariables.set(\"variable_key\", \"variable_value\");\r",
+											"\r",
+											"\r",
+											"pm.sendRequest(url1, function (err, res) {\r",
+											"    pm.test(\"Status check for \" + url1, function () {\r",
+											"        pm.expect(err).to.be.null;\r",
+											"        pm.expect(res).to.have.property('code', 200);\r",
+											"        pm.expect(res)\r",
+											"        \r",
+											"        var jsonData = res.json();\r",
+											"        pm.expect(jsonData.enumResult).to.eql(\"ACCEPTED\")\r",
+											"        pm.expect(jsonData.httpCode).to.eql(200)\r",
+											"        pm.expect(jsonData.result).length.greaterThan(0)\r",
+											"\r",
+											"        console.warn(jsonData)\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current_url}}",
+									"host": [
+										"{{current_url}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -1446,11 +2183,187 @@
 					"item": [
 						{
 							"name": "Work",
-							"item": []
+							"item": [
+								{
+									"name": "update all",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b20d8bc3-be30-4fef-89b3-41c91bde3ec7\",\r\n    \"originalEmail\":\"originalEmail@update.com\",\r\n    \"currentEmail\":\"updatedEmail@update.com\",\r\n    \"password\":\"UpdatedPassword123!\",\r\n    \"enabled\":\"false\",\r\n    \"expired\":\"true\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update one",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b20d8bc3-be30-4fef-89b3-41c91bde3ec7\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update remove avatarurl",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"avatarUrl\":\"REMOVE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						},
 						{
 							"name": "Fail",
-							"item": []
+							"item": [
+								{
+									"name": "missing id - fix this",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\":\"test\",\r\n    \"lastName\":\"test\",\r\n    \"institutionId\":\"test\",\r\n    \"dateOfBirth\":\"2022-01-01\",\r\n    \"avatar\":\"1\",\r\n    \"avatarUrl\":\"test\",\r\n    \"countryCode\":\"test\",\r\n    \"language\":\"test\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "missing property",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "not found",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"588c4ad7-6963-4806-b315-eeb25511f123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
 						}
 					]
 				},
@@ -1516,8 +2429,197 @@
 			"description": "everything related to credentialsLogin\n\ncurrently needs everything implemented - for some reason on login they are not created. This also needs to be incorperated into the login flow fix"
 		},
 		{
-			"name": "5. PersonalInformation",
+			"name": "5. PersonalInformation - need auto test",
 			"item": [
+				{
+					"name": "Update",
+					"item": [
+						{
+							"name": "Work",
+							"item": [
+								{
+									"name": "update all",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"firstName\":\"test\",\r\n    \"lastName\":\"system\",\r\n    \"institutionId\":\"test\",\r\n    \"dateOfBirth\":\"2022-01-01\",\r\n    \"avatar\":\"1\",\r\n    \"avatarUrl\":\"www.avatar.com/1.png\",\r\n    \"countryCode\":\"test\",\r\n    \"language\":\"test\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update one",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"firstName\":\"test2\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update remove avatarurl",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"avatarUrl\":\"REMOVE\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Fail",
+							"item": [
+								{
+									"name": "missing id - fix this",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"firstName\":\"test\",\r\n    \"lastName\":\"test\",\r\n    \"institutionId\":\"test\",\r\n    \"dateOfBirth\":\"2022-01-01\",\r\n    \"avatar\":\"1\",\r\n    \"avatarUrl\":\"test\",\r\n    \"countryCode\":\"test\",\r\n    \"language\":\"test\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "missing property",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "not found",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"588c4ad7-6963-4806-b315-eeb25511f123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/PersonalInformation/update",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"PersonalInformation",
+												"update"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
 				{
 					"name": "Read",
 					"item": [
@@ -3327,195 +4429,6 @@
 					]
 				},
 				{
-					"name": "Update",
-					"item": [
-						{
-							"name": "Work",
-							"item": [
-								{
-									"name": "update all",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"firstName\":\"test\",\r\n    \"lastName\":\"system\",\r\n    \"institutionId\":\"test\",\r\n    \"dateOfBirth\":\"2022-01-01\",\r\n    \"avatar\":\"1\",\r\n    \"avatarUrl\":\"www.avatar.com/1.png\",\r\n    \"countryCode\":\"test\",\r\n    \"language\":\"test\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "update one",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"firstName\":\"test2\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "update remove avatarurl",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\",\r\n    \"avatarUrl\":\"REMOVE\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						},
-						{
-							"name": "Fail",
-							"item": [
-								{
-									"name": "missing id - fix this",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"firstName\":\"test\",\r\n    \"lastName\":\"test\",\r\n    \"institutionId\":\"test\",\r\n    \"dateOfBirth\":\"2022-01-01\",\r\n    \"avatar\":\"1\",\r\n    \"avatarUrl\":\"test\",\r\n    \"countryCode\":\"test\",\r\n    \"language\":\"test\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "missing property",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"2b5d084a-3696-43a4-a513-192c2d5fa783\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "not found",
-									"request": {
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"588c4ad7-6963-4806-b315-eeb25511f123\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/PersonalInformation/update",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"PersonalInformation",
-												"update"
-											]
-										}
-									},
-									"response": []
-								}
-							]
-						}
-					]
-				},
-				{
 					"name": "Delete",
 					"item": [
 						{
@@ -3649,22 +4562,22 @@
 			]
 		},
 		{
-			"name": "6. Roles - need all",
+			"name": "6. Roles - need auto test",
 			"item": [
 				{
-					"name": "Add - needs field validation",
+					"name": "addRole to credentials",
 					"item": [
 						{
 							"name": "Work",
 							"item": [
 								{
-									"name": "register account",
+									"name": "addRole",
 									"request": {
-										"method": "POST",
+										"method": "PUT",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"add@role.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3672,28 +4585,34 @@
 											}
 										},
 										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
+											"raw": "https://localhost:8081/Credentials/role/add",
 											"protocol": "https",
 											"host": [
 												"localhost"
 											],
 											"port": "8081",
 											"path": [
-												"Auth",
-												"signup"
+												"Credentials",
+												"role",
+												"add"
 											]
 										}
 									},
 									"response": []
-								},
+								}
+							]
+						},
+						{
+							"name": "Fail",
+							"item": [
 								{
-									"name": "login",
+									"name": "role not found",
 									"request": {
-										"method": "POST",
+										"method": "PUT",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"system@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_FAIL\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3701,43 +4620,14 @@
 											}
 										},
 										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
+											"raw": "https://localhost:8081/Credentials/role/add",
 											"protocol": "https",
 											"host": [
 												"localhost"
 											],
 											"port": "8081",
 											"path": [
-												"Auth",
-												"signin"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "assign role",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"35f4a5c2-b48e-476f-aa73-daadb8c2aa08\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Users/role/add",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Users",
+												"Credentials",
 												"role",
 												"add"
 											]
@@ -3746,392 +4636,143 @@
 									"response": []
 								},
 								{
-									"name": "sign out",
+									"name": "no role parameter",
 									"request": {
-										"method": "POST",
+										"method": "PUT",
 										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
 										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
+											"raw": "https://localhost:8081/Credentials/role/add",
 											"protocol": "https",
 											"host": [
 												"localhost"
 											],
 											"port": "8081",
 											"path": [
-												"Auth",
-												"signout"
+												"Credentials",
+												"role",
+												"add"
 											]
 										}
 									},
 									"response": []
-								}
-							]
-						},
-						{
-							"name": "Fail",
-							"item": [
-								{
-									"name": "insuficcient privileges",
-									"item": [
-										{
-											"name": "role setup register",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"insufficient@role.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signup",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signup"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"insufficient@role.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "assign role insufficient role",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"159e26d0-031f-455e-aa43-8499470453bf\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/add",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"add"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
-										}
-									]
 								},
 								{
-									"name": "already exists",
-									"item": [
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"add@role.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
+									"name": "no role id",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											},
-											"response": []
+											}
 										},
-										{
-											"name": "role setup register",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"alreadyexists@role.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signup",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signup"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "assign role setup",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"154985fa-3a58-4382-897a-4a47de64f5ef\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/add",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"add"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "assign role already exists",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"154985fa-3a58-4382-897a-4a47de64f5ef\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/add",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"add"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/add",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"add"
+											]
 										}
-									]
+									},
+									"response": []
 								},
 								{
-									"name": "not found",
-									"item": [
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"system@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
+									"name": "credentials not found",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"159e26d0-000a-000a-aa00-8499470453bf\",\r\n    \"role\":\"ROLE_FAIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											},
-											"response": []
+											}
 										},
-										{
-											"name": "assign role not found",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"159e26d0-000a-000a-aa00-8499470453bf\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/add",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"add"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/add",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"add"
+											]
 										}
-									]
+									},
+									"response": []
 								},
 								{
-									"name": "field violations - needs implementing",
-									"item": []
+									"name": "addRole duplicate",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/add",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"add"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
 					]
 				},
 				{
-					"name": "Remove - needs field validation",
+					"name": "removeRole from credentials",
 					"item": [
 						{
 							"name": "Work",
 							"item": [
 								{
-									"name": "register account",
+									"name": "removeRole",
 									"request": {
-										"method": "POST",
+										"method": "PUT",
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"remove@role.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -4139,124 +4780,16 @@
 											}
 										},
 										"url": {
-											"raw": "https://localhost:8081/Auth/signup",
+											"raw": "https://localhost:8081/Credentials/role/delete",
 											"protocol": "https",
 											"host": [
 												"localhost"
 											],
 											"port": "8081",
 											"path": [
-												"Auth",
-												"signup"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "login",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\":\"system@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Auth/signin",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signin"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "assign role",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"6b44bd92-fff3-4aab-8d70-523c52704e1a\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Users/role/remove",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Users",
+												"Credentials",
 												"role",
-												"remove"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "remove role",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"id\":\"6b44bd92-fff3-4aab-8d70-523c52704e1a\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "https://localhost:8081/Users/role/remove",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Users",
-												"role",
-												"remove"
-											]
-										}
-									},
-									"response": []
-								},
-								{
-									"name": "sign out",
-									"request": {
-										"method": "POST",
-										"header": [],
-										"url": {
-											"raw": "https://localhost:8081/Auth/signout",
-											"protocol": "https",
-											"host": [
-												"localhost"
-											],
-											"port": "8081",
-											"path": [
-												"Auth",
-												"signout"
+												"delete"
 											]
 										}
 									},
@@ -4268,289 +4801,154 @@
 							"name": "Fail",
 							"item": [
 								{
-									"name": "insuficcient privileges",
-									"item": [
-										{
-											"name": "role setup register",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"insufficient@role.com\",\r\n    \"password\":\"abcd1234!\",\r\n    \"dateOfBirth\":\"1990-01-01\",\r\n    \"termsAndConditions\":\"true\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signup",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signup"
-													]
+									"name": "role not found",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_FAIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											},
-											"response": []
+											}
 										},
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"insufficient@role.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "remove role insufficient role",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"6b44bd92-fff3-4aab-8d70-523c52704e1a\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/remove",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"remove"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/delete",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"delete"
+											]
 										}
-									]
+									},
+									"response": []
 								},
 								{
-									"name": "doesnt exist",
-									"item": [
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"system@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
+									"name": "no role parameter",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_FAIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											},
-											"response": []
+											}
 										},
-										{
-											"name": "remove doesnt exist",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"154985fa-3a58-4382-897a-4a47de64f5ef\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/remove",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"remove"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/delete",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"delete"
+											]
 										}
-									]
+									},
+									"response": []
 								},
 								{
-									"name": "not found",
-									"item": [
-										{
-											"name": "login",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"email\":\"system@test.com\",\r\n    \"password\":\"abcd1234!\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Auth/signin",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signin"
-													]
+									"name": "no role id",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
 												}
-											},
-											"response": []
+											}
 										},
-										{
-											"name": "assign role not found",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"body": {
-													"mode": "raw",
-													"raw": "{\r\n    \"id\":\"159e26d0-000a-000a-aa00-8499470453bf\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
-													"options": {
-														"raw": {
-															"language": "json"
-														}
-													}
-												},
-												"url": {
-													"raw": "https://localhost:8081/Users/role/remove",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Users",
-														"role",
-														"remove"
-													]
-												}
-											},
-											"response": []
-										},
-										{
-											"name": "sign out",
-											"request": {
-												"method": "POST",
-												"header": [],
-												"url": {
-													"raw": "https://localhost:8081/Auth/signout",
-													"protocol": "https",
-													"host": [
-														"localhost"
-													],
-													"port": "8081",
-													"path": [
-														"Auth",
-														"signout"
-													]
-												}
-											},
-											"response": []
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/delete",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"delete"
+											]
 										}
-									]
+									},
+									"response": []
 								},
 								{
-									"name": "field violations - needs implementing",
-									"item": []
+									"name": "credentials not found",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_FAIL\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/delete",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "removeRole duplicate",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"id\":\"b6a71f5b-d477-4032-995b-893d6e1606a3\",\r\n    \"role\":\"ROLE_STAFF\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://localhost:8081/Credentials/role/delete",
+											"protocol": "https",
+											"host": [
+												"localhost"
+											],
+											"port": "8081",
+											"path": [
+												"Credentials",
+												"role",
+												"delete"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
@@ -4633,6 +5031,12 @@
 		{
 			"name": "14. ColourScheme - need all",
 			"item": []
+		}
+	],
+	"variable": [
+		{
+			"key": "variable_key",
+			"value": ""
 		}
 	]
 }

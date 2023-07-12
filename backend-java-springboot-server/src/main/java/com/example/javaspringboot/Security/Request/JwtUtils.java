@@ -172,13 +172,13 @@ import org.springframework.web.util.WebUtils;
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-    @Value("${Edowl.app.jwtSecret}")
+    @Value("${EducationalProject.app.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${Edowl.app.jwtExpirationMs}")
+    @Value("${EducationalProject.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    @Value("${Edowl.app.jwtCookieName}")
+    @Value("${EducationalProject.app.jwtCookieName}")
     private String jwtCookie;
 
     public String getJwtFromCookies(HttpServletRequest request) {

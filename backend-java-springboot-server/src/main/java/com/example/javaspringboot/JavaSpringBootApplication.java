@@ -27,9 +27,7 @@ public class JavaSpringBootApplication {
     private boolean testMode;
 
     @Bean
-    CommandLineRunner run(MyUserDetailsService myUserDetailsService,
-        RoleRepository roleRepository, TestService testService
-    ){ // MOCK DATA
+    CommandLineRunner run(RoleRepository roleRepository, TestService testService){ // MOCK DATA
         return args -> {
 
             if (roleRepository.findAll().size() < 4){ // BELOW ONLY RUNS IF MISSING ROLES

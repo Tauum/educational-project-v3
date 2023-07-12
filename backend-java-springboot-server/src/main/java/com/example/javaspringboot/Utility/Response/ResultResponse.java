@@ -12,31 +12,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResultResponse {
+
   Object result;
-  List<Object> results;
   EnumResult enumResult;
   int httpCode;
+
   public ResultResponse(EnumResult enumResult, int httpCode) {
-    this.enumResult = enumResult;
-    this.httpCode = httpCode;
-  }
-  public ResultResponse(Object result, EnumResult enumResult) {
-    this.result = result;
-    this.enumResult = enumResult;
-  }
-  public ResultResponse( List<Object> results, EnumResult enumResult) {
-    this.results = results;
-    this.enumResult = enumResult;
-  }
-
-  public ResultResponse(List<Object> results, EnumResult enumResult, int httpCode) {
-    this.results = results;
-    this.enumResult = enumResult;
-    this.httpCode = httpCode;
-  }
-
-  public ResultResponse(Object result, EnumResult enumResult, int httpCode) {
-    this.result = result;
     this.enumResult = enumResult;
     this.httpCode = httpCode;
   }
@@ -46,23 +27,26 @@ public class ResultResponse {
     Object value = result.getValue();
     switch (key) {
       case ACCEPTED:
-        if (value != null) return new ResultResponse(value, EnumResult.ACCEPTED, 200);
-        else return new ResultResponse(EnumResult.ACCEPTED, 200);
-      case NOT_FOUND:
-      case DOES_NOT_EXIST:
-        return new ResultResponse(null, key, 200); //TODO: pass value
-      case ERROR:
-        return new ResultResponse(null, EnumResult.ERROR, 500); //TODO: pass value
+        if (value != null)
+          return new ResultResponse(value, key, 200);
+        else
+          return new ResultResponse(key, 200);
+      case NOT_FOUND, DOES_NOT_EXIST:
+        return new ResultResponse(null, key, 200);
+      case ERROR, UNKNOWN, UNDETERMINED:
+        return new ResultResponse(null, key, 500);
       case BAD_REQUEST:
-        return new ResultResponse(null, EnumResult.BAD_REQUEST, 400); //TODO: pass value
-      case DUPLICATE:
-        return new ResultResponse(null, EnumResult.DUPLICATE, 409); //TODO: pass value
+        return new ResultResponse(null, key, 400);
+      case DUPLICATE, ALREADY_EXISTS:
+        return new ResultResponse(null, key, 409);
       default:
-        if (!isNullOrWhitespace(value.toString()))
-          return new ResultResponse(null, key, 200);
-        break;
+        try {
+          if (!isNullOrWhitespace(value.toString())) return new ResultResponse(value, key, 200);
+        } catch (Exception e) {
+        }
+        return new ResultResponse(null, key, 400);
     }
-    return new ResultResponse(null, EnumResult.UNKNOWN, 500);
+//    return new ResultResponse(null, EnumResult.UNKNOWN, 500);
   }
 
   public ResultResponse filterResults(Map.Entry<EnumResult, List> results) {
@@ -71,20 +55,23 @@ public class ResultResponse {
     switch (key) {
       case ACCEPTED:
         if (value != null)
-          return new ResultResponse(value, EnumResult.ACCEPTED, 200);
-        break;
-      case NOT_FOUND:
-      case DOES_NOT_EXIST:
+          return new ResultResponse(value, key, 200);
+        else
+          return new ResultResponse(key, 200);
+      case NOT_FOUND, DOES_NOT_EXIST:
         return new ResultResponse(null, key, 200);
-      case ERROR:
-        return new ResultResponse(null, EnumResult.ERROR, 500);
+      case ERROR, UNKNOWN, UNDETERMINED:
+        return new ResultResponse(null, key, 500);
       case BAD_REQUEST:
-        return new ResultResponse(null, EnumResult.BAD_REQUEST, 400);
+        return new ResultResponse(null, key, 400);
+      case DUPLICATE, ALREADY_EXISTS:
+        return new ResultResponse(null, key, 409);
       default:
-        if (!isNullOrWhitespace(value.toString()))
-          return new ResultResponse(null, key, 200);
-        break;
+        try {
+          if (!isNullOrWhitespace(value.toString())) return new ResultResponse(value, key, 200);
+        } catch (Exception e) {
+        }
+        return new ResultResponse(null, key, 400);
     }
-    return new ResultResponse(null, EnumResult.UNKNOWN, 500);
   }
 }

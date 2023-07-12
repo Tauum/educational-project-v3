@@ -6,30 +6,39 @@ import static com.example.javaspringboot.Utility.GeneralUtility.mapResultRespons
 import static com.example.javaspringboot.Utility.GeneralUtility.mapResultsResponse;
 import static com.example.javaspringboot.Utility.GeneralUtility.uuid2StringToUuid;
 import static com.example.javaspringboot.Utility.GeneralUtility.uuidStringValidityCheck;
+import static com.example.javaspringboot.Utility.GeneralUtility.uuidValidityCheck;
 
 import com.example.javaspringboot.Security.Model.Credentials;
 import com.example.javaspringboot.Security.Model.CredentialsFrontend;
+import com.example.javaspringboot.Security.Model.EnumRole;
 import com.example.javaspringboot.Security.Model.Role;
 import com.example.javaspringboot.Security.Repository.CredentialsRepository;
+import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.Utility.Response.EnumResult;
+import com.example.javaspringboot.Utility.UserUtility;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class CredentialsService {
   private final CredentialsRepository credentialsRepo;
-
   private RoleService roleService;
+//  TODO: having pwecoder here causes circular referencing with myUserDetails
+  private final PasswordEncoder passwordEncoder;
 
-  public CredentialsService(CredentialsRepository credentialsRepo, RoleService roleService) {
+  public CredentialsService(CredentialsRepository credentialsRepo, RoleService roleService, PasswordEncoder passwordEncoder) {
     this.credentialsRepo = credentialsRepo;
     this.roleService = roleService;
+    this.passwordEncoder = passwordEncoder;
   }
 
   public Entry<EnumResult, List> findAll(){
@@ -93,6 +102,38 @@ public class CredentialsService {
       }
     }
     return mapResultsResponse(EnumResult.ERROR);
+  }
+
+  public Entry<EnumResult, Object> create(@RequestBody Registration registration){
+    EnumResult validation = UserUtility.validateCredentialsRegistration(registration);
+    if (validation != EnumResult.ACCEPTED) return mapResultResponse(validation, null);
+    if (findCredentialsByCurrentEmail(registration.getEmail()) != null) return mapResultResponse(EnumResult.DUPLICATE);
+
+    Role undefined = roleService.findRoleByName(EnumRole.ROLE_UNDEFINED);
+    HashSet roles = new HashSet<Role>();
+    roles.add(undefined);
+
+    registration.setPassword(
+        passwordEncoder.encode(registration.getPassword()));
+
+       Credentials credentials = new Credentials(
+            registration.getEmail(),
+            registration.getPassword(),
+            roles);
+
+     return mapResultResponse(EnumResult.ACCEPTED, credentials);
+  }
+
+  public Entry<EnumResult, Object> saveCreated(@RequestBody Registration registration){
+    Map.Entry<EnumResult, Object> creationAttempt = create(registration);
+    if(creationAttempt.getKey() != EnumResult.ACCEPTED || creationAttempt.getValue() == null) return mapResultResponse(creationAttempt.getKey());
+      try {
+        Credentials result = credentialsRepo.save((Credentials) creationAttempt.getValue());
+        return mapResultResponse(EnumResult.ACCEPTED, result);
+      }
+      catch(Exception e){
+        return mapResultResponse(EnumResult.ERROR, null);
+      }
   }
 
   public Entry<EnumResult, Object> addRoleToCredentials(String uuid, String roleName){
@@ -160,27 +201,29 @@ public class CredentialsService {
   }
 
 
-
-//
-//  public Entry<EnumResult, Object> update(PersonalInformation personalInformation){
-//    if (!uuidValidityCheck(personalInformation.getId())) return mapResultResponse(EnumResult.BAD_REQUEST, null);
-//    Map.Entry<EnumResult, Object> find = findById(personalInformation.getId().toString());
-//    if (find.getKey() != EnumResult.ACCEPTED) return mapResultResponse(EnumResult.NOT_FOUND, null);
-//    else {
-//      try {
-//        Optional<PersonalInformation> optional = (Optional<PersonalInformation>) find.getValue();
-//        if (optional.isPresent()) {
-//          PersonalInformation converted = optional.get();
-//          converted.update(personalInformation);
-//          personalInformaitonRepo.save(converted);
-//          return mapResultResponse(EnumResult.ACCEPTED, converted);
-//        } else  return mapResultResponse(EnumResult.ERROR, null);
-//      } catch (Exception e) {
-//        System.out.println(e);
-//        return mapResultResponse(EnumResult.ERROR, null);
-//      }
-//    }
-//  }
+  public Entry<EnumResult, Object> update(Credentials credentials){
+    if (!uuidValidityCheck(credentials.getId())) return mapResultResponse(EnumResult.BAD_REQUEST, null);
+    Map.Entry<EnumResult, Object> find = findById(credentials.getId().toString());
+    if (find.getKey() != EnumResult.ACCEPTED) return mapResultResponse(EnumResult.NOT_FOUND, null);
+    else {
+      try {
+        Optional<Credentials> optional = (Optional<Credentials>) find.getValue();
+        if (optional.isPresent()) {
+          Credentials converted = optional.get();
+          converted.update(credentials);
+          if (isNullOrWhitespace(credentials.getPassword()) && credentials.getPassword().length() > 7) {
+            converted.setPassword( //TODO: verify this works correctly
+                passwordEncoder.encode(credentials.getPassword()));
+          }
+          credentialsRepo.save(converted);
+          return mapResultResponse(EnumResult.ACCEPTED, converted);
+        } else  return mapResultResponse(EnumResult.ERROR, null);
+      } catch (Exception e) {
+        System.out.println(e);
+        return mapResultResponse(EnumResult.ERROR, null);
+      }
+    }
+  }
 
 
     //fix this to not be plain text and more complex
@@ -207,30 +250,6 @@ public class CredentialsService {
 //    }
 
 
-//  public Credentials updateCredentials(Credentials credentials) {
-//
-//    Credentials find = findCredentialsById(credentials.getId());
-//
-//    if (find != null) {
-//      try {
-//
-//      } catch (Exception e) {
-//      }
-//
-//      return credentialsRepo.save(find);
-//    }
-//    return null;
-//  }
-//
-//  //query method (auto generates method in spring back-backend)
-//  @Transactional
-//  public boolean deleteCredentials(UUID id) {
-//    Optional<Credentials> found = Optional.ofNullable(findCredentialsById(id));
-//    // remove connection from user
-//    found.ifPresent(credentials -> credentialsRepo.deleteById(credentials.getId()));
-//    return false;
-//  }
-
   public List<CredentialsFrontend> convertCredentialsListForFrontend(List<Credentials> credentialsList){
     return credentialsList.stream()
         .map(this::convertCredentialsForFrontend)
@@ -242,5 +261,7 @@ public class CredentialsService {
     return converted.buildFromCredentials(credentials);
   }
 
-
+    @Transactional
+  public Entry<EnumResult, Object> delete(String parameter) {
+  }
 }

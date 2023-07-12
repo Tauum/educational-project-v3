@@ -1,6 +1,9 @@
 package com.example.javaspringboot.Security.Controller;
 
+import com.example.javaspringboot.Security.Model.Credentials;
+import com.example.javaspringboot.Security.Request.LoginRequest;
 import com.example.javaspringboot.Security.Service.CredentialsService;
+import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Records.CredentialsStatusRecord;
 import com.example.javaspringboot.User.Records.EmailsRecord;
 import com.example.javaspringboot.User.Records.RoleCredentialsRecord;
@@ -12,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,6 +86,17 @@ public class CredentialsController {
         .body(resultResponse);
   }
 
+  @PostMapping()
+  public ResponseEntity<?> create(@RequestBody Registration json){
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResult(
+        credentialsService.saveCreated(json));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
+  }
 
   @PutMapping("/role/add")
   public ResponseEntity<?> addRole(@RequestBody RoleCredentialsRecord json){
@@ -96,7 +111,7 @@ public class CredentialsController {
   }
 
   @PutMapping("/role/delete")
-  public ResponseEntity<?> deleteRole(@RequestBody RoleCredentialsRecord json){
+  public ResponseEntity<?> deleteRole(@RequestBody RoleCredentialsRecord json) {
     ResultResponse resultResponse = new ResultResponse();
 
     resultResponse = resultResponse.filterResult(
@@ -107,30 +122,30 @@ public class CredentialsController {
         .body(resultResponse);
   }
 
-//
-//  @PutMapping("/update")
-//  public ResponseEntity<?> update(@RequestBody Credentials credentials){
-//    ResultResponse resultResponse = new ResultResponse();
-//
-//    resultResponse = resultResponse.filterResult(
-//        credentialsService.update(credentials));
-//
-//    return ResponseEntity.status(resultResponse.getHttpCode())
-//        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
-//        .body(resultResponse);
-//  }
-//
-//  @DeleteMapping("/delete")
-//  public ResponseEntity<?> delete(@RequestBody UUIDRecord json){
-//    ResultResponse resultResponse = new ResultResponse();
-//
-//    resultResponse = resultResponse.filterResult(
-//        credentialsService.delete(json.parameter()));
-//
-//    return ResponseEntity.status(resultResponse.getHttpCode())
-//        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
-//        .body(resultResponse);
-//  }
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody Credentials credentials){
+      ResultResponse resultResponse = new ResultResponse();
+
+      resultResponse = resultResponse.filterResult(
+          credentialsService.update(credentials));
+
+      return ResponseEntity.status(resultResponse.getHttpCode())
+          .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+          .body(resultResponse);
+    }
+
+
+  @DeleteMapping("/delete")
+  public ResponseEntity<?> delete(@RequestBody UUIDRecord json){
+    ResultResponse resultResponse = new ResultResponse();
+
+    resultResponse = resultResponse.filterResult(
+        credentialsService.delete(json.parameter()));
+
+    return ResponseEntity.status(resultResponse.getHttpCode())
+        .header(HttpHeaders.WARNING, resultResponse.getEnumResult().toString())
+        .body(resultResponse);
+  }
 
 }
 

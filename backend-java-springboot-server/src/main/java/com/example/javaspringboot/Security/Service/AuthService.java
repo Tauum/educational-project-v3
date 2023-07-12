@@ -4,13 +4,13 @@ import com.example.javaspringboot.Security.Model.MyUserDetails;
 import com.example.javaspringboot.Security.Repository.RoleRepository;
 import com.example.javaspringboot.Security.Request.JwtUtils;
 import com.example.javaspringboot.Security.Request.LoginRequest;
-import com.example.javaspringboot.Utility.Response.EnumResult;
-import com.example.javaspringboot.Utility.Response.LoginResponse;
-import com.example.javaspringboot.Utility.Response.RegisterResponse;
 import com.example.javaspringboot.User.Model.Registration;
 import com.example.javaspringboot.User.Model.User;
 import com.example.javaspringboot.User.Model.UserProfile;
 import com.example.javaspringboot.User.Service.UserService;
+import com.example.javaspringboot.Utility.Response.EnumResult;
+import com.example.javaspringboot.Utility.Response.LoginResponse;
+import com.example.javaspringboot.Utility.Response.RegisterResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +19,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -33,9 +32,6 @@ public class AuthService {
 
   @Autowired
   RoleRepository roleRepository;
-
-  @Autowired
-  PasswordEncoder encoder;
   @Autowired
   JwtUtils jwtUtils;
 
@@ -141,5 +137,9 @@ public class AuthService {
           400
       );
     }
+  }
+
+  public static class RoleService {
+
   }
 }

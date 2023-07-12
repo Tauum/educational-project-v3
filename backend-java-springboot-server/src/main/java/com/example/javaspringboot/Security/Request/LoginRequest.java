@@ -3,7 +3,7 @@ package com.example.javaspringboot.Security.Request;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-@Data @AllArgsConstructor //needed for database mapping
+@Data @AllArgsConstructor
 public class LoginRequest {
 
   private String email;
